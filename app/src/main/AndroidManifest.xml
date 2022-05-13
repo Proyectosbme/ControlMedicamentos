@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Usuarios.UsuarioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios.UsuarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios.UsuarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios.UsuarioRegistrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuPrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login.LoginRPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios.MenuUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
