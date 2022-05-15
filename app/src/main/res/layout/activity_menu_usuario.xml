@@ -76,7 +76,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/purple_200"
                 android:text="Actualizar"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:onClick="Actualizar_Usuario"/>
 
             <Button
                 android:layout_width="64dp"
@@ -89,7 +90,8 @@
                 android:text="Eliminar"
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:onClick="Eliminar_usuario"/>
         </LinearLayout>
     </LinearLayout>
 

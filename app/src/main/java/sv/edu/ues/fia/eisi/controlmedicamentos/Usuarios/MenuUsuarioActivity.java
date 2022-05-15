@@ -27,4 +27,14 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuUsuarioActivity.this, UsuarioConsultarActivity.class);
         startActivity(intent);
     }
+
+    public void Eliminar_usuario(View view) {
+        Intent intent = new Intent(MenuUsuarioActivity.this, UsuarioEliminarActivity.class);
+        startActivity(intent);
+    }
+
+    public void Actualizar_Usuario(View view) {
+        Intent intent = new Intent(MenuUsuarioActivity.this, UsuarioActualizarActivity.class);
+        startActivity(intent);
+    }
 }

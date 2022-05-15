@@ -57,25 +57,47 @@ public class BDMedicamentosControl {
             String regInsertados="Registro Insertado Nº= ";
             long contador=0;
             //,,,,,,
+            if(verificarIntegridad(usuario,1)){
+                regInsertados= "Error al Insertar el registro, Correo Duplicado. Verificar inserción";
+            }
+            else{
+                ContentValues cond = new ContentValues();
+                cond.put("idUsuario",usuario.getIdUsuario());
+                cond.put("nombre",usuario.getNombre());
+                cond.put("apellido",usuario.getApellido());
+                cond.put("edad",usuario.getEdad());
+                cond.put("genero",usuario.getGenero());
+                cond.put("contraseña",usuario.getContraseña());
+                cond.put("correo",usuario.getCorreo());
+
+                contador=db.insert("usuario", null, cond);
+                if(contador==-1 || contador==0)
+                {
+                    regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                }
+                else {
+                    regInsertados=regInsertados+contador;
+                }
+
+            }
+            return regInsertados;
+        }
+
+    public String actualizar(Usuario usuario,Usuario usuario2){
+        if(verificarIntegridad(usuario2, 2)){
+            String[] id = {usuario2.getCorreo()};
             ContentValues cond = new ContentValues();
-            cond.put("idUsuario",usuario.getIdUsuario());
             cond.put("nombre",usuario.getNombre());
             cond.put("apellido",usuario.getApellido());
             cond.put("edad",usuario.getEdad());
             cond.put("genero",usuario.getGenero());
-            cond.put("contraseña",usuario.getContraseña());
             cond.put("correo",usuario.getCorreo());
-
-            contador=db.insert("usuario", null, cond);
-            if(contador==-1 || contador==0)
-            {
-                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-            }
-            else {
-                regInsertados=regInsertados+contador;
-            }
-            return regInsertados;
+            db.update("usuario", cond, "correo = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
         }
+    }
     public Usuario consultarUsuario(String correo){
 
         String[] id = {correo};
@@ -92,6 +114,57 @@ public class BDMedicamentosControl {
         }
     }
 
+    public String eliminarUsuario(Usuario usuario){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("usuario", "correo='"+usuario.getCorreo()+"'", null);
+        if (contador>=1){
+            regAfectados+=contador+"/nSe elimino el registro "+usuario.getCorreo();
+        }
+        else{
+            regAfectados="No se elimino ningun registro";
+        }
+
+        return regAfectados;
+    }
+
+    private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{
+        switch(relacion){
+
+            case 1://verificar que al insertar usuario no exista el correo
+            {
+                Usuario usuario = (Usuario) dato;
+                String[] id1 = {usuario.getCorreo()};
+                //abrir();
+                Cursor cursor1 = db.query("usuario", null, "correo = ?",
+                        id1, null,null, null);
+                 if(cursor1.moveToFirst()){
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
+
+        }
+
+
+        case 2:
+        {
+//verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
+            Usuario usuario1 = (Usuario) dato;
+            String[] ids = {usuario1.getCorreo()};
+            abrir();
+            Cursor c = db.query("usuario", null, "correo = ?", ids,
+                    null, null, null);
+            if(c.moveToFirst()){
+//Se encontraron datos
+                return true;
+            }
+            return false;
+        }
+        default:
+        return false;
+    }
 
     }
+}
 
