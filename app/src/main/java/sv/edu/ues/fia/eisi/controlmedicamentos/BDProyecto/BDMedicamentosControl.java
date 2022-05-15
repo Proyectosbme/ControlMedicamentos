@@ -11,12 +11,13 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 
 public class BDMedicamentosControl {
 
-        private static final String[]camposUsuarior=new String []{"nombre","correo","contraseña"};
+        private static final String[]camposUsuarioconsulta=new String []{"nombre","correo","contraseña"};
         private static final String[]camposUsuario = new String []{"idUsuario","nombre","apellido","edad","genero","contraseña","correo"};
+        private static final String[]camposMedico = new String [] {"idMedico","idUsuario","Nombre","Especialidad"};
+
         private static final String[]camposEstablecimiento = new String [] {"idEstablecimiento","nombre","direccion","telefono","idUsuario"};
-        private static final String[]camposMedico = new String [] {"idMedico","idUsuario","idContacto","Nombre"};
         private static final String[]camposCitaMedica = new String [] {"idCitaMedica","idMedico","titulo","telefono","idUsuario"};
-        private static final String[]camposContacto = new String [] {"idContacto","titulo","direccion","telefono","idUsuario"};
+        private static final String[]camposContacto = new String [] {"idContacto","titulo","direccion","telefono","idMedico"};
 
 
     private final Context context;
@@ -52,6 +53,14 @@ public class BDMedicamentosControl {
         public void cerrar(){
             DBHelper.close();
         }
+
+    public String InicioUsuario(Usuario usuario){
+        if(verificarIntegridad(usuario, 3)){
+           return "autorizado";
+        }else{
+            return "denegado";
+        }
+    }
 
         public String insertar(Usuario usuario){
             String regInsertados="Registro Insertado Nº= ";
@@ -101,7 +110,7 @@ public class BDMedicamentosControl {
     public Usuario consultarUsuario(String correo){
 
         String[] id = {correo};
-        Cursor cursor = db.query("usuario", camposUsuarior, "correo = ?"
+        Cursor cursor = db.query("usuario", camposUsuarioconsulta, "correo = ?"
                 , id, null, null, null);
         if(cursor.moveToFirst()){
             Usuario usuario = new Usuario();
@@ -161,6 +170,20 @@ public class BDMedicamentosControl {
             }
             return false;
         }
+            case 3:
+            {
+//verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
+                Usuario usuario1 = (Usuario) dato;
+                String[] ids = {usuario1.getCorreo(),usuario1.getContraseña()};
+                abrir();
+                Cursor c = db.query("usuario", null, "correo = ? AND contraseña = ?", ids,
+                        null, null, null);
+                if(c.moveToFirst()){
+            //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
         default:
         return false;
     }

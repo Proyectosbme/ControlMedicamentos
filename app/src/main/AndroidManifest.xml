@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Medico.MedicoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medico.MedicoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medico.MedicoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medico.MedicoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medico.MenuMedicoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Usuarios.UsuarioActualizarActivity"
             android:exported="false" />
         <activity
