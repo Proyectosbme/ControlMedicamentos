@@ -76,6 +76,7 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
+        android:inputType="textPassword"
         android:drawablePadding="20dp"/>
     <EditText
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@
         android:background="#30ffffff"
         android:hint="Confirme su contraseña"
         android:textColorHint="@color/white"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:layout_margin="10dp"
         android:drawablePadding="20dp"/>

@@ -7,13 +7,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 
 public class BDMedicamentosControl {
 
         private static final String[]camposUsuarioconsulta=new String []{"nombre","correo","contraseña"};
+
         private static final String[]camposUsuario = new String []{"idUsuario","nombre","apellido","edad","genero","contraseña","correo"};
-        private static final String[]camposMedico = new String [] {"idMedico","idUsuario","Nombre","Especialidad"};
+        private static final String[]camposMedico = new String [] {"idMedico","idUsuario","nombre","especialidad"};
 
         private static final String[]camposEstablecimiento = new String [] {"idEstablecimiento","nombre","direccion","telefono","idUsuario"};
         private static final String[]camposCitaMedica = new String [] {"idCitaMedica","idMedico","titulo","telefono","idUsuario"};
@@ -26,7 +28,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "parcial02.s3db";
+            private static final String BASE_DATOS = "ControlMedicamento.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -36,7 +38,7 @@ public class BDMedicamentosControl {
             public void onCreate(SQLiteDatabase db) {
                 try{
                     db.execSQL("CREATE TABLE usuario" +"(idUsuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +"nombre VARCHAR(25)," +"apellido VARCHAR(25),"+"edad Integer,"+"genero VARCHAR(25),"+"contraseña VARCHAR(15),"+"correo VARCHAR(100));");
-
+                    db.execSQL("CREATE TABLE medico" +"(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +"idUsuario INTEGER," +"nombre VARCHAR(25),"+"especialidad VARCHAR(35));");
                 }catch(SQLException e){
                     e.printStackTrace();
                 }
@@ -61,8 +63,11 @@ public class BDMedicamentosControl {
             return "denegado";
         }
     }
+//--------------Inicio de usuario-------------------------------------------------
+//--------------Inicio de usuario-------------------------------------------------
+//--------------Inicio de usuario-------------------------------------------------
 
-        public String insertar(Usuario usuario){
+    public String insertar(Usuario usuario){
             String regInsertados="Registro Insertado Nº= ";
             long contador=0;
             //,,,,,,
@@ -136,6 +141,42 @@ public class BDMedicamentosControl {
 
         return regAfectados;
     }
+
+    //--------------fin de usuario-------------------------------------------------
+    //--------------fin de usuario-------------------------------------------------
+    //--------------fin de usuario-------------------------------------------------
+
+
+    //--------------Inicio de Medico-------------------------------------------------
+    //--------------Inicio de Medico-------------------------------------------------
+    //--------------Inicio de Medico-------------------------------------------------
+    public String insertarMedico(Medico medico){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues medi = new ContentValues();
+        medi.put("idMedico", medico.getIdMedico());
+        medi.put("idUsuario", medico.getIdUsuario());
+        medi.put("nombre", medico.getNombre());
+        medi.put("especialidad", medico.getEspecialidad());
+
+        contador=db.insert("medico", null, medi);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
+
+    //--------------Fin de Medico-------------------------------------------------
+    //--------------Fin de Medico-------------------------------------------------
+    //--------------Fin de Medico-------------------------------------------------
+
+
+
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{
         switch(relacion){
