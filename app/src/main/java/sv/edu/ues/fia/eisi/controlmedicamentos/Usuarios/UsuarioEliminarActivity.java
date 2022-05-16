@@ -13,21 +13,21 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.R;
 
 public class UsuarioEliminarActivity extends AppCompatActivity {
 
-    EditText editCorreoEli;
-    BDMedicamentosControl controlhelper;
+    private EditText editIdUEli;
+    private BDMedicamentosControl controlhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_eliminar);
         controlhelper=new BDMedicamentosControl (this);
-        editCorreoEli=(EditText)findViewById(R.id.ediUEliCorreo);
+        editIdUEli=(EditText)findViewById(R.id.ediUEliCorreo);
     }
 
     public void Eliminar_Usuario(View view) {
         String regEliminadas;
         Usuario usuario =new Usuario();
-        usuario.setCorreo(editCorreoEli.getText().toString());
+        usuario.setIdUsuario(editIdUEli.getText().toString());
         controlhelper.abrir();
         regEliminadas=controlhelper.eliminarUsuario(usuario);
         controlhelper.cerrar();

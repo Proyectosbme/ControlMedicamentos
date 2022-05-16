@@ -9,26 +9,48 @@
     tools:context=".Medico.MedicoInsertarActivity">
 
     <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/signin"
-        android:text="Insertar Medico"
+        android:text="Registro de Medico"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="35dp"
         android:textStyle="bold"
         android:layout_margin="10dp"
         android:gravity="center"/>
-    <EditText
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ediMusurio"
-        android:inputType="number"
-        android:background="#30ffffff"
-        android:hint="Ingrese Nombre del medico"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:drawablePadding="20dp"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="usuario"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/comboUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Eliminar"
+            android:textSize="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"

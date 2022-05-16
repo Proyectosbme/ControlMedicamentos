@@ -28,7 +28,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamento.s3db";
+            private static final String BASE_DATOS = "ControlMedicamentos2.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -37,8 +37,10 @@ public class BDMedicamentosControl {
             @Override
             public void onCreate(SQLiteDatabase db) {
                 try{
-                    db.execSQL("CREATE TABLE usuario" +"(idUsuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +"nombre VARCHAR(25)," +"apellido VARCHAR(25),"+"edad Integer,"+"genero VARCHAR(25),"+"contraseña VARCHAR(15),"+"correo VARCHAR(100));");
-                    db.execSQL("CREATE TABLE medico" +"(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +"idUsuario INTEGER," +"nombre VARCHAR(25),"+"especialidad VARCHAR(35));");
+                    db.execSQL("CREATE TABLE usuario(idUsuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nombre VARCHAR(25),apellido VARCHAR(25),edad Integer,genero VARCHAR(25),contraseña VARCHAR(15),correo VARCHAR(100));");
+                    db.execSQL("CREATE TABLE medico(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,nombre VARCHAR(25),especialidad VARCHAR(25));");
+                    db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
+
                 }catch(SQLException e){
                     e.printStackTrace();
                 }
@@ -131,7 +133,14 @@ public class BDMedicamentosControl {
     public String eliminarUsuario(Usuario usuario){
         String regAfectados="filas afectadas= ";
         int contador=0;
-        contador+=db.delete("usuario", "correo='"+usuario.getCorreo()+"'", null);
+
+
+        if (verificarIntegridad(usuario,4)){
+            contador+=db.delete("medico", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+
+        }
+        contador+=db.delete("usuario", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+usuario.getCorreo();
         }
@@ -151,15 +160,19 @@ public class BDMedicamentosControl {
     //--------------Inicio de Medico-------------------------------------------------
     //--------------Inicio de Medico-------------------------------------------------
     public String insertarMedico(Medico medico){
+
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues medi = new ContentValues();
-        medi.put("idMedico", medico.getIdMedico());
-        medi.put("idUsuario", medico.getIdUsuario());
-        medi.put("nombre", medico.getNombre());
-        medi.put("especialidad", medico.getEspecialidad());
 
-        contador=db.insert("medico", null, medi);
+        ContentValues conn = new ContentValues();
+
+        conn.put("idMedico", medico.getIdMedico());
+        conn.put("idUsuario", medico.getIdUsuariom());
+        conn.put("nombre", medico.getNombre());
+        conn.put("especialidad", medico.getEspecialidad());
+
+        contador=db.insert("medico", null, conn);
+
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -171,6 +184,33 @@ public class BDMedicamentosControl {
 
     }
 
+
+    public String eliminarMedico(Medico medico){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("medico", "idMedico='"+medico.getIdMedico()+"'", null);
+        if (contador>=1){
+            regAfectados+=contador+"/nSe elimino el registro "+medico.getIdMedico();
+        }
+        else{
+            regAfectados="No se elimino ningun registro";
+        }
+
+        return regAfectados;
+    }
+    public String actualizarMedico(Medico medico,Medico medico2){
+        if(verificarIntegridad(medico2, 5)){
+            String[] id = {medico2.getIdUsuariom()};
+            ContentValues cond = new ContentValues();
+            cond.put("idUsuario",medico.getIdUsuariom());
+            cond.put("nombre",medico.getNombre());
+            cond.put("especialidad",medico.getEspecialidad());
+            db.update("medico", cond, "idUsuario = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+    }
     //--------------Fin de Medico-------------------------------------------------
     //--------------Fin de Medico-------------------------------------------------
     //--------------Fin de Medico-------------------------------------------------
@@ -225,6 +265,34 @@ public class BDMedicamentosControl {
                 }
                 return false;
             }
+            case 4:
+            {
+
+                Usuario usuario = (Usuario) dato;
+                Cursor c=db.query(true, "medico", new String[] {
+                                "idUsuario" }, "idUsuario='"+usuario.getIdUsuario()+"'",null,
+                        null, null, null, null);
+                if(c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 5:
+            {
+//verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
+                Medico medico1 = (Medico) dato;
+                String[] ids = {medico1.getIdUsuariom()};
+                abrir();
+                Cursor c = db.query("medico", null, "idUsuario = ?", ids,
+                        null, null, null);
+                if(c.moveToFirst()){
+//Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
         default:
         return false;
     }

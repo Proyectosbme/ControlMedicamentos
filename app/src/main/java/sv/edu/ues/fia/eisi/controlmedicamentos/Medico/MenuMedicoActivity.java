@@ -24,12 +24,18 @@ public class MenuMedicoActivity extends AppCompatActivity {
     }
 
     public void oncConsultarMedico(View view) {
+        Intent intent = new Intent(MenuMedicoActivity.this, MedicoConsultarActivity.class);
+        startActivity(intent);
     }
 
     public void Actualizar_Medico(View view) {
+        Intent intent = new Intent(MenuMedicoActivity.this, MedicoActualizarActivity.class);
+        startActivity(intent);
     }
 
     public void Eliminar_Medico(View view) {
+        Intent intent = new Intent(MenuMedicoActivity.this, MedicoEliminarActivity.class);
+        startActivity(intent);
     }
 
     public void Listar_Medico(View view) {

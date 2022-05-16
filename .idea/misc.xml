@@ -5,8 +5,14 @@
       <map>
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.1825" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1825" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_actualizar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_agregar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_consultar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_login_rpass.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_actualizar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_consultar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_eliminar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_insertar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_medico.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_principal.xml" value="0.25" />

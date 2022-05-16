@@ -6,7 +6,7 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String idUsuario, String nombre, String apellido, String genero, String contraseña, String correo, Integer edad) {
+    public Usuario(String idUsuario, String nombre, String apellido, String genero, String contraseña, String correo, int edad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -64,11 +64,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Integer getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 }

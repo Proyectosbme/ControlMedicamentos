@@ -1,16 +1,32 @@
 package sv.edu.ues.fia.eisi.controlmedicamentos.Clases;
 
 public class Medico {
-    String nombre,especialidad;
-    int idMedico,idUsuario;
+    String idUsuariom,idMedico,nombre,especialidad;
 
     public Medico() {
     }
-    public Medico(String nombre, String especialidad, Integer idMedico, Integer idUsuario) {
+
+    public Medico(String idUsuariom, String idMedico, String nombre, String especialidad) {
+        this.idUsuariom = idUsuariom;
+        this.idMedico = idMedico;
         this.nombre = nombre;
         this.especialidad = especialidad;
+    }
+
+    public String getIdUsuariom() {
+        return idUsuariom;
+    }
+
+    public void setIdUsuariom(String idUsuariom) {
+        this.idUsuariom = idUsuariom;
+    }
+
+    public String getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(String idMedico) {
         this.idMedico = idMedico;
-        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -27,22 +43,6 @@ public class Medico {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }
-
-    public Integer getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(Integer idMedico) {
-        this.idMedico = idMedico;
-    }
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
     }
 }
 
