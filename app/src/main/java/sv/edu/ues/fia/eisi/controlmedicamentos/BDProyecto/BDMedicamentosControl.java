@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Contacto;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 
@@ -19,7 +20,7 @@ public class BDMedicamentosControl {
 
         private static final String[]camposEstablecimiento = new String [] {"idEstablecimiento","nombre","direccion","telefono","idUsuario"};
         private static final String[]camposCitaMedica = new String [] {"idCitaMedica","idMedico","titulo","telefono","idUsuario"};
-        private static final String[]camposContacto = new String [] {"idContacto","titulo","direccion","telefono","idMedico"};
+        private static final String[]camposContacto = new String [] {"idContacto","idMedico","direccion","telefono"};
 
 
     private final Context context;
@@ -28,7 +29,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamentos2.s3db";
+            private static final String BASE_DATOS = "ControlMedicamentos.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -39,7 +40,7 @@ public class BDMedicamentosControl {
                 try{
                     db.execSQL("CREATE TABLE usuario(idUsuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nombre VARCHAR(25),apellido VARCHAR(25),edad Integer,genero VARCHAR(25),contraseña VARCHAR(15),correo VARCHAR(100));");
                     db.execSQL("CREATE TABLE medico(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,nombre VARCHAR(25),especialidad VARCHAR(25));");
-                    db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
+                    db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
 
                 }catch(SQLException e){
                     e.printStackTrace();
@@ -131,16 +132,19 @@ public class BDMedicamentosControl {
     }
 
     public String eliminarUsuario(Usuario usuario){
+
         String regAfectados="filas afectadas= ";
         int contador=0;
 
-
-        if (verificarIntegridad(usuario,4)){
+        if (verificarIntegridad(usuario,4))
+        {
             contador+=db.delete("medico", "idUsuario='"+usuario.getIdUsuario()+"'", null);
-
+        }
+        if (verificarIntegridad(usuario,8))
+        {
+            contador+=db.delete("medicoContacto", "idUsuario='"+usuario.getIdUsuario()+"'", null);
         }
         contador+=db.delete("usuario", "idUsuario='"+usuario.getIdUsuario()+"'", null);
-
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+usuario.getCorreo();
         }
@@ -189,6 +193,7 @@ public class BDMedicamentosControl {
         String regAfectados="filas afectadas= ";
         int contador=0;
         contador+=db.delete("medico", "idMedico='"+medico.getIdMedico()+"'", null);
+
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+medico.getIdMedico();
         }
@@ -215,6 +220,57 @@ public class BDMedicamentosControl {
     //--------------Fin de Medico-------------------------------------------------
     //--------------Fin de Medico-------------------------------------------------
 
+    //--------------Inicio de contacto-------------------------------------------------
+    //--------------Inicio de contactoo-------------------------------------------------
+    //--------------Inicio de contacto-------------------------------------------------
+
+    public String insertarContacto(Contacto contacto){
+
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+
+        if(verificarIntegridad(contacto,7)){
+            regInsertados= "Error al Insertar el el contacto, el  contacto ya existe";
+        }
+        else{
+        ContentValues conn = new ContentValues();
+        conn.put("idContacto", contacto.getIdContacto());
+        conn.put("idUsuario",contacto.getIdUsuario());
+        conn.put("idMedico", contacto.getIdMedico());
+        conn.put("direccion", contacto.getDireccion());
+        conn.put("telefono", contacto.getTelefono());
+
+        contador=db.insert("medicoContacto", null, conn);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        }
+        return regInsertados;
+
+    }
+
+    public String actualizarContacto(Contacto contacto){
+        if(verificarIntegridad(contacto, 6)){
+            String[] id = {contacto.getIdMedico()};
+            ContentValues cond = new ContentValues();
+            cond.put("idMedico",contacto.getIdMedico());
+            cond.put("direccion",contacto.getDireccion());
+            cond.put("telefono",contacto.getTelefono());
+            db.update("medicoContacto", cond, "idMedico = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+    }
+
+    //--------------Fin de contacto-------------------------------------------------
+    //--------------Fin de contacto-------------------------------------------------
+    //--------------Fin de contacto-------------------------------------------------
 
 
 
@@ -233,10 +289,7 @@ public class BDMedicamentosControl {
                     return true;
                 }
                 return false;
-
         }
-
-
         case 2:
         {
 //verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
@@ -266,9 +319,7 @@ public class BDMedicamentosControl {
                 return false;
             }
             case 4:
-            {
-
-                Usuario usuario = (Usuario) dato;
+            {   Usuario usuario = (Usuario) dato;
                 Cursor c=db.query(true, "medico", new String[] {
                                 "idUsuario" }, "idUsuario='"+usuario.getIdUsuario()+"'",null,
                         null, null, null, null);
@@ -291,6 +342,45 @@ public class BDMedicamentosControl {
                     return true;
                 }
                 return false;
+            }
+
+            case 6:
+            {
+//verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
+               Contacto contacto = (Contacto) dato;
+                String[] ids = {contacto.getIdMedico()};
+                abrir();
+                Cursor c = db.query("medico", null, "idMedico = ?", ids,
+                        null, null, null);
+                if(c.moveToFirst()){
+//Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+            case 7://verificar que al insertar usuario no exista el correo
+            {
+                Contacto contacto = (Contacto) dato;
+                String[] id1 = {contacto.getIdMedico()};
+                //abrir();
+                Cursor cursor1 = db.query("medicoContacto", null, "idMedico = ?",
+                        id1, null,null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 8:
+            {   Usuario usuario = (Usuario) dato;
+                Cursor c=db.query(true, "medicoContacto", new String[] {
+                                "idUsuario" }, "idUsuario='"+usuario.getIdUsuario()+"'",
+                        null,null, null, null, null);
+                if(c.moveToFirst())
+                    return true;
+                else
+                    return false;
             }
 
         default:

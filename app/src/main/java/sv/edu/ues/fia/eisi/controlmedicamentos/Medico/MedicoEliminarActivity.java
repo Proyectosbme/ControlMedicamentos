@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import sv.edu.ues.fia.eisi.controlmedicamentos.BDProyecto.BDMedicamentosControl;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Contacto;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 import sv.edu.ues.fia.eisi.controlmedicamentos.R;

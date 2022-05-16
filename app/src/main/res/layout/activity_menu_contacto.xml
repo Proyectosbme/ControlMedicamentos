@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_500"
-    tools:context=".Medico.MenuMedicoActivity">
+    android:background="@color/purple_200"
+    tools:context=".ContactoMedico.MenuContactoActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/signin"
-        android:text="Menu Medico"
+        android:text="Contacto Medico"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -44,7 +45,7 @@
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:onClick="oncAgregarMedico"/>
+                android:onClick="contactoAgregarMedico"/>
             <Button
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
                 android:layout_margin="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:onClick="oncConsultarMedico"/>
+                android:onClick="contactoConsultarMedico"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -77,40 +78,10 @@
             android:backgroundTint="@color/purple_200"
             android:text="Actualizar"
             android:textSize="15dp"
-            android:onClick="Actualizar_Medico"/>
+            android:onClick="contacot_Actualizar_Medico"/>
 
-        <Button
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/purple_200"
-            android:text="Eliminar"
-            android:textSize="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:onClick="Eliminar_Medico"/>
+
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <Button
-            android:layout_width="59dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/purple_200"
-            android:text="Contacto"
-            android:textSize="15dp"
-            android:onClick="Contacto_medico"/>
-
-        </LinearLayout>
 
 </LinearLayout>

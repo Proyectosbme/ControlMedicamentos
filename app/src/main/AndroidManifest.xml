@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".ContactoMedico.MenuContactoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ContactoMedico.ContactoConsultarActivity"
             android:exported="false" />
         <activity

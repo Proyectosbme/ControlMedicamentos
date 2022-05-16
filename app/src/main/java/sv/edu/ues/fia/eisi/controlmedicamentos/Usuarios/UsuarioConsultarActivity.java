@@ -18,11 +18,11 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 import sv.edu.ues.fia.eisi.controlmedicamentos.R;
 
 public class UsuarioConsultarActivity extends AppCompatActivity {
-    ListView listviewpersonas;
-    ArrayList<String> listaInformacion;
-    ArrayList<Usuario> listaUsuario;
-    BDMedicamentosControl.DatabaseHelper DBH;
-    EditText edinombreU;
+    private ListView listviewpersonas;
+    private ArrayList<String> listaInformacion;
+    private ArrayList<Usuario> listaUsuario;
+    private BDMedicamentosControl.DatabaseHelper DBH;
+    private EditText edinombreU;
     String nombreb;
 
     @Override
@@ -42,7 +42,9 @@ public class UsuarioConsultarActivity extends AppCompatActivity {
         Cursor cursor = db.rawQuery(
                 "select idusuario,nombre,apellido,edad,genero from usuario "+
                     "where nombre =?",id1, null);
+
         while (cursor.moveToNext()){
+
             Usuario usuario1 = new Usuario();
             usuario1.setIdUsuario(cursor.getString(0));
             usuario1.setNombre(cursor.getString(1));
