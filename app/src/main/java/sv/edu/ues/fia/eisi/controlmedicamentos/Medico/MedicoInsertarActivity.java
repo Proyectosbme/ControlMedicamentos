@@ -27,6 +27,7 @@ public class MedicoInsertarActivity extends AppCompatActivity {
     private ArrayList<Usuario> PersonasList;
     private BDMedicamentosControl.DatabaseHelper conn;
     private BDMedicamentosControl helper;
+    private ArrayAdapter<CharSequence> adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +40,23 @@ public class MedicoInsertarActivity extends AppCompatActivity {
 
         conn = new BDMedicamentosControl.DatabaseHelper(getApplicationContext());
         consultarListaPersonas();
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaPersonas);
+        adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaPersonas);
         comboUsuario.setAdapter(adaptador);
         comboUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
                     usuarioid=PersonasList.get(i-1).getIdUsuario();
-
                 }
                 else{
-
+                    ediNombreM.setText("");
+                    EdiEspecialidadM.setText("");
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
-
     }
 
 
@@ -88,6 +87,7 @@ public class MedicoInsertarActivity extends AppCompatActivity {
     }
 
     public void Registrar_Medico(View view) {
+        try {
 
         NombreM= ediNombreM.getText().toString();
         EspecialidadM=EdiEspecialidadM.getText().toString();
@@ -98,12 +98,14 @@ public class MedicoInsertarActivity extends AppCompatActivity {
         medicos.setIdUsuariom(usuarioid);
         medicos.setNombre(NombreM);
         medicos.setEspecialidad(EspecialidadM);
-        try{
+
             helper.abrir();
             regInsertados=helper.insertarMedico(medicos);
             helper.cerrar();
 
             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+
+
         }
 
         catch(Exception e){

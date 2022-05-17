@@ -82,6 +82,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
 
     public void Contacto_Actualizar(View view) {
 
+        try {
         direccion= ediDireccion.getText().toString();
         telefono=EdiTelefono.getText().toString();
 
@@ -92,7 +93,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
         contacto.setTelefono(telefono);
         Toast.makeText(this,usuarioid+direccion+telefono , Toast.LENGTH_SHORT).show();
 
-        try{
+
             helper.abrir();
             regInsertados=helper.actualizarContacto(contacto);
             helper.cerrar();

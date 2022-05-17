@@ -26,6 +26,7 @@ public class MedicoEliminarActivity extends AppCompatActivity {
     }
 
     public void Eliminar_Medico(View view) {
+        try {
         String regEliminadas;
         Medico medico =new Medico();
         medico.setIdMedico(editIdMedicoEli.getText().toString());
@@ -33,5 +34,8 @@ public class MedicoEliminarActivity extends AppCompatActivity {
         regEliminadas=controlhelper.eliminarMedico(medico);
         controlhelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();
+        }
     }
 }

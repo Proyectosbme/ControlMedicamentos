@@ -85,6 +85,7 @@ public class ContactoAgregarActivity extends AppCompatActivity {
     }
     public void Contacto_agregar(View view) {
 
+        try {
         direccion= ediDireccion.getText().toString();
         telefono=EdiTelefono.getText().toString();
 
@@ -96,7 +97,7 @@ public class ContactoAgregarActivity extends AppCompatActivity {
         contacto.setTelefono(telefono);
         Toast.makeText(this,medicoid+usuarioid+direccion+telefono , Toast.LENGTH_SHORT).show();
 
-        try{
+
             helper.abrir();
             regInsertados=helper.insertarContacto(contacto);
             helper.cerrar();

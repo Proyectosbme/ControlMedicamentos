@@ -35,12 +35,13 @@ public class UsuarioConsultarActivity extends AppCompatActivity {
 
     }
     public void consultarUsuarios() {
+
         SQLiteDatabase db=DBH.getReadableDatabase();
         listaUsuario= new ArrayList<Usuario>();
         nombreb= edinombreU.getText().toString();
         String[] id1 = {nombreb};
         Cursor cursor = db.rawQuery(
-                "select idusuario,nombre,apellido,edad,genero from usuario "+
+                "select idUsuario,nombre,apellido,edad,genero from usuario "+
                     "where nombre =?",id1, null);
 
         while (cursor.moveToNext()){

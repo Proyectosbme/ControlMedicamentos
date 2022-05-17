@@ -32,6 +32,7 @@ public class UsuarioActualizarActivity extends AppCompatActivity {
     }
 
     public void Actualizar_Usuario(View view) {
+        try {
         nombre = ediNombre.getText().toString();
         apellido = ediApellido.getText().toString();
         edad=(Integer) Integer.valueOf(ediEdad.getText().toString());
@@ -55,5 +56,8 @@ public class UsuarioActualizarActivity extends AppCompatActivity {
         regInsertados=helper.actualizar(usuario,usuario2);
         helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();
+        }
     }
 }

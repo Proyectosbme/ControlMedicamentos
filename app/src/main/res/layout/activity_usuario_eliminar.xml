@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/teal_200"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Usuarios.UsuarioEliminarActivity">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#30ffffff"
-        android:hint="Ingrese el correo del usuario:"
+        android:hint="Ingrese el nombre de usuario:"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:layout_margin="10dp"

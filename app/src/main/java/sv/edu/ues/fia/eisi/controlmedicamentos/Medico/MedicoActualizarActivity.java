@@ -84,6 +84,9 @@ public class MedicoActualizarActivity extends AppCompatActivity {
     }
 
      public void Actualizar_Medico(View view) {
+        try {
+
+
         NombreMA= ediNombreM.getText().toString();
         EspecialidadMA=EdiEspecialidadM.getText().toString();
         String regInsertados;
@@ -94,7 +97,7 @@ public class MedicoActualizarActivity extends AppCompatActivity {
 
          Medico medico =new Medico();
          medico.setIdUsuariom(usuarioidA);
-        try{
+
             helper.abrir();
             regInsertados=helper.actualizarMedico(medicos,medico);
             helper.cerrar();
