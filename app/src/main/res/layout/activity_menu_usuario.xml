@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="@color/teal_700"
     android:orientation="vertical"
     tools:context=".Usuarios.MenuUsuarioActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/signin"
+        android:drawableLeft="@drawable/usermenu"
         android:text="Menu Usuarios"
         android:textColor="@color/white"
         android:textSize="25dp"
@@ -18,10 +19,6 @@
         android:layout_margin="10dp"
         android:gravity="center"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="165dp"
-        android:src="@drawable/ic_usuario_menu" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,11 +39,13 @@
                 android:backgroundTint="@color/purple_200"
                 android:layout_centerHorizontal="true"
                 android:textSize="15dp"
+                android:drawableLeft="@drawable/insert"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:onClick="oncAgregarUsuarioa"/>
             <Button
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
@@ -70,6 +69,8 @@
                 android:layout_width="59dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/update"
+
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -83,6 +84,8 @@
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/delete"
+
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:layout_weight="1"

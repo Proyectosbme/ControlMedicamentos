@@ -128,11 +128,6 @@ public class ContactoConsultarActivity extends AppCompatActivity {
     }
 
     public void COND_CONTACTO(View view) {
-
-
-
-
-
         //_______________________________________
 
         try{

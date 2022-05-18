@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Enfermedades.MenuEnfermedadesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.MedicamentosEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.MedicamentosEditarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.MedicamentosConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.MedicamentosAgregarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Enfermedades.EnfermedadesEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Enfermedades.EnfermedadesEditarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Enfermedades.EnfermedadesConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Enfermedades.EnfermedadesAgregarActivity"
+            android:exported="false" />
+        <activity
             android:name=".ContactoMedico.MenuContactoActivity"
             android:exported="false" />
         <activity

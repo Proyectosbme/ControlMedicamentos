@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/purple_200"
     tools:context=".ContactoMedico.ContactoAgregarActivity">
@@ -78,9 +78,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnURegistrar"
-        android:text="Registrar"
+        android:drawableLeft="@drawable/insert"
+        android:text="Agregar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="#50475E"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Contacto_agregar" />

@@ -47,8 +47,12 @@ public class MedicoActualizarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
                     usuarioidA=PersonasList.get(i-1).getIdUsuariom();
+                    ediNombreM.setText(PersonasList.get(i-1).getNombre());
+                    EdiEspecialidadM.setText(PersonasList.get(i-1).getEspecialidad());
                 }
                 else{
+                    ediNombreM.setText("");
+                    EdiEspecialidadM.setText("");
 
                 }
             }

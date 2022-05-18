@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Contacto;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Enfermedad;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 
@@ -29,7 +30,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamentos.s3db";
+            private static final String BASE_DATOS = "Control.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -41,6 +42,8 @@ public class BDMedicamentosControl {
                     db.execSQL("CREATE TABLE usuario(idUsuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nombre VARCHAR(25),apellido VARCHAR(25),edad Integer,genero VARCHAR(25),contraseña VARCHAR(15),correo VARCHAR(100));");
                     db.execSQL("CREATE TABLE medico(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,nombre VARCHAR(25),especialidad VARCHAR(25));");
                     db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
+                    db.execSQL("CREATE TABLE enfermedad(idEnfermedad INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,idUsuario INTEGER,nombreEnfermedad VARCHAR(75),fecha VARCHAR(25),tipo VARCHAR(25));");
+
 
                 }catch(SQLException e){
                     e.printStackTrace();
@@ -272,6 +275,31 @@ public class BDMedicamentosControl {
     //--------------Fin de contacto-------------------------------------------------
     //--------------Fin de contacto-------------------------------------------------
 
+    public String insertarEnfermedad(Enfermedad enfermedad){
+
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+
+        ContentValues conn = new ContentValues();
+        conn.put("idEnfermedad", enfermedad.getIdEnfermedad());
+        conn.put("idMedico", enfermedad.getIdMedico());
+        conn.put("idUsuario", enfermedad.getIdUsuario());
+        conn.put("nombreEnfermedad", enfermedad.getNombre());
+        conn.put("fecha", enfermedad.getFecha());
+        conn.put("tipo", enfermedad.getTipo());
+
+        contador=db.insert("enfermedad", null, conn);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
 
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{

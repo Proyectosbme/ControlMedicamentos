@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/teal_700"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Usuarios.UsuarioRegistrarActivity">
@@ -17,6 +17,8 @@
         android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
+        android:drawableLeft="@drawable/adduserr"
+
         android:layout_margin="10dp"
         android:gravity="center"/>
 
@@ -107,9 +109,11 @@
         android:id="@+id/btnURegistrar"
         android:text="Registrar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="#64706F"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:onClick="Registrar_Usuario" />
+        android:onClick="Registrar_Usuario"
+        android:drawableLeft="@drawable/insert"
+        />
 
 </LinearLayout>

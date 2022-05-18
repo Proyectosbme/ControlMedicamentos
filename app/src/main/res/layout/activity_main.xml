@@ -25,7 +25,8 @@
         android:layout_width="100dp"
         android:layout_height="105dp"
         android:layout_gravity="center"
-        tools:srcCompat="@drawable/perfil" />
+        tools:drawa="@drawable/perfil"
+        />
 
 
     <TextView

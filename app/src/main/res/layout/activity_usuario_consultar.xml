@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/teal_200"
+    android:background="@drawable/degradado"
     android:layout_height="match_parent"
     tools:context=".Usuarios.UsuarioConsultarActivity">
 
@@ -15,6 +15,7 @@
         android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold"
+        android:drawableLeft="@drawable/listt"
         android:layout_margin="10dp"
         android:gravity="center" />
 
@@ -44,6 +45,7 @@
     <ListView
         android:id="@+id/lsVConsultarU"
         android:layout_width="match_parent"
+        android:drawableLeft="@drawable/user"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="15dp"
         tools:layout_editor_absoluteY="15dp" >

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import sv.edu.ues.fia.eisi.controlmedicamentos.Enfermedades.MenuEnfermedadesActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Medico.MenuMedicoActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Usuarios.MenuUsuarioActivity;
 
@@ -25,6 +26,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     public void Menu_medico(View view) {
         Intent intent = new Intent(MenuPrincipalActivity.this, MenuMedicoActivity.class);
         startActivity(intent);
+    }
 
+    public void Enfermedades(View view) {
+        Intent intent = new Intent(MenuPrincipalActivity.this, MenuEnfermedadesActivity.class);
+        startActivity(intent);
     }
 }

@@ -24,6 +24,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
     private EditText ediDireccion,EdiTelefono;
     private String direccion,telefono,usuarioid;
     private Spinner comboUsuario;
+    private ArrayList<Contacto> listaContacto;
     private ArrayList<String> listaPersonas;
     private ArrayList<Medico> PersonasList;
     private BDMedicamentosControl.DatabaseHelper conn;
@@ -41,12 +42,36 @@ public class ContactoActualizarActivity extends AppCompatActivity {
         conn = new BDMedicamentosControl.DatabaseHelper(getApplicationContext());consultarListaPersonas();
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaPersonas);
         comboUsuario.setAdapter(adaptador);
+        listaContacto=new ArrayList<Contacto>();
+        SQLiteDatabase db=conn.getReadableDatabase();
         comboUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
-                    usuarioid=PersonasList.get(i-1).getIdMedico();                }
-                else{}
+                    ediDireccion.setText("");
+                    EdiTelefono.setText("");
+                    usuarioid=PersonasList.get(i-1).getIdMedico();
+
+                    String[] id1 = {usuarioid};
+                    Cursor cursor = db.rawQuery(
+                            "select idMedico,direccion,telefono from medicoContacto "+
+                                    "where idMedico =?",id1, null);
+
+                    while (cursor.moveToNext()){
+                        Contacto contacto = new Contacto();
+                        contacto.setIdMedico(cursor.getString(0));
+                        contacto.setDireccion(cursor.getString(1));
+                        contacto.setTelefono(cursor.getString(2));
+                        listaContacto.add(contacto);
+                    }
+                    ediDireccion.setText(listaContacto.get(i-1).getDireccion());
+                    EdiTelefono.setText(listaContacto.get(i-1).getTelefono());
+
+                }
+                else{
+                    ediDireccion.setText("");
+                    EdiTelefono.setText("");
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -55,7 +80,6 @@ public class ContactoActualizarActivity extends AppCompatActivity {
     }
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
-        Usuario persona=null;
         PersonasList=new ArrayList<Medico>();
         Cursor cursor=db.rawQuery("select idMedico,nombre,especialidad from medico ", null);
 
@@ -75,8 +99,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
         listaPersonas.add("Seleccione");
         for (int i=0; i<PersonasList.size();i++)
         {
-            listaPersonas.add("Id :"+PersonasList.get(i).getIdMedico()+"-->"+
-                    "Nombre :"+PersonasList.get(i).getNombre()+" "+PersonasList.get(i).getEspecialidad()+"\n");
+            listaPersonas.add("Nombre :"+PersonasList.get(i).getNombre()+" Especialidad :"+PersonasList.get(i).getEspecialidad()+"\n");
         }
     }
 

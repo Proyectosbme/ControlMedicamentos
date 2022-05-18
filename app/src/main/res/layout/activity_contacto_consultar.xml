@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@drawable/degradado"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ContactoMedico.ContactoConsultarActivity">
 
 
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Consulta de Contacto de Medico"
-        android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
         android:layout_margin="10dp"
+
+
         android:gravity="center"/>
 
     <LinearLayout
@@ -62,6 +62,7 @@
         android:backgroundTint="@color/design_default_color_secondary"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
+
             android:onClick="COND_CONTACTO" />
 
     <ListView
