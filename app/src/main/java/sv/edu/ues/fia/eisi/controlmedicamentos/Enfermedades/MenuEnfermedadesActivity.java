@@ -22,4 +22,9 @@ public class MenuEnfermedadesActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuEnfermedadesActivity.this, EnfermedadesAgregarActivity.class);
         startActivity(intent);
     }
+
+    public void Consultar_enfermedad(View view) {
+        Intent intent = new Intent(MenuEnfermedadesActivity.this, EnfermedadesConsultarActivity.class);
+        startActivity(intent);
+    }
 }

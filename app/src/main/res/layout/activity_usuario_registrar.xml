@@ -9,6 +9,18 @@
     tools:context=".Usuarios.UsuarioRegistrarActivity">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Contenido del scroll -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
     <TextView
 
         android:layout_width="match_parent"
@@ -109,11 +121,12 @@
         android:id="@+id/btnURegistrar"
         android:text="Registrar"
         android:layout_gravity="center"
-        android:backgroundTint="#64706F"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Registrar_Usuario"
         android:drawableLeft="@drawable/insert"
         />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

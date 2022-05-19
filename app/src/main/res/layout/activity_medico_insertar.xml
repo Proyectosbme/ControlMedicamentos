@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_500"
+    android:background="@color/teal_700"
     android:layout_height="match_parent"
     tools:context=".Medico.MedicoInsertarActivity">
 
@@ -32,6 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
+
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
@@ -59,6 +60,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/user"
+
         android:id="@+id/ediMNombre"
         android:background="#30ffffff"
         android:hint="Ingrese Nombre del medico"
@@ -72,6 +75,8 @@
         android:id="@+id/ediMEspecialidad"
         android:background="#30ffffff"
         android:hint="Ingrese la especialidad"
+        android:drawableLeft="@drawable/tipo"
+
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
@@ -84,7 +89,7 @@
         android:drawableLeft="@drawable/insert"
         android:text="Registrar"
         android:layout_gravity="center"
-        android:backgroundTint="#4F595E"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Registrar_Medico" />

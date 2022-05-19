@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_500"
+    android:background="@color/teal_700"
     android:layout_height="match_parent"
     tools:context=".Enfermedades.MenuEnfermedadesActivity">
 
@@ -56,6 +56,7 @@
                 android:layout_marginLeft="5dp"
                 android:drawableLeft="@drawable/list"
                 android:layout_marginRight="5dp"
+                android:onClick="Consultar_enfermedad"
                 />
         </LinearLayout>
 

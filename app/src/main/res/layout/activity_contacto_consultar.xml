@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@drawable/degradado"
+    android:background="@color/teal_700"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ContactoMedico.ContactoConsultarActivity">
@@ -12,8 +12,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/listt"
+
         android:text="Consulta de Contacto de Medico"
         android:textSize="35dp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_margin="10dp"
 
@@ -26,7 +29,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_width="182dp"
+            android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -34,6 +37,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/doctor"
             android:text="Medico"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -55,11 +59,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
+        android:drawableLeft="@drawable/list"
+
         android:layout_height="wrap_content"
         android:id="@+id/btnURegistrar"
         android:text="Consultar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
 

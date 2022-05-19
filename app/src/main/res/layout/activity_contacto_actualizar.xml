@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@color/teal_700"
     tools:context=".ContactoMedico.ContactoActualizarActivity">
 
 
@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Actualizar Contacto de Medico"
+        android:drawableLeft="@drawable/updateuser"
         android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -27,14 +28,17 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_width="182dp"
+            android:layout_width="236dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/doctor"
+
             android:text="Medico"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -60,6 +64,8 @@
         android:id="@+id/ediMAcNombre"
         android:background="#30ffffff"
         android:hint="Ingrese la direccion"
+        android:drawableLeft="@drawable/map"
+
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
@@ -73,15 +79,20 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
+        android:drawableLeft="@drawable/phonel"
+
         android:drawablePadding="20dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnURegistrar"
-        android:text="Registrar"
+        android:drawableLeft="@drawable/update"
+
+
+        android:text="Actualizar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Contacto_Actualizar" />

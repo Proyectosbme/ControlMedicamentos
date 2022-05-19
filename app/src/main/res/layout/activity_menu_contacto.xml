@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_500"
+    android:background="@color/teal_700"
     tools:context=".ContactoMedico.MenuContactoActivity">
 
     <TextView
@@ -33,6 +33,8 @@
 
             <Button
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/add"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Agregar"
@@ -45,6 +47,8 @@
                 android:onClick="contactoAgregarMedico"/>
             <Button
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/list"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
@@ -66,13 +70,14 @@
 
         <Button
             android:layout_width="59dp"
+            android:drawableLeft="@drawable/update"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#4C4259"
+            android:backgroundTint="@color/purple_200"
             android:text="Actualizar"
             android:textSize="15dp"
             android:onClick="contacot_Actualizar_Medico"/>

@@ -5,14 +5,26 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@color/teal_700"
     tools:context=".ContactoMedico.ContactoAgregarActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <!-- Contenido del scroll -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/addcontac"
+
         android:text="Agregar Contacto de Medico"
         android:textColor="@color/white"
         android:textSize="35dp"
@@ -26,14 +38,16 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_width="182dp"
+            android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+
             android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/doctor"
             android:text="Medico"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -59,12 +73,15 @@
         android:id="@+id/ediMediCNombre"
         android:background="#30ffffff"
         android:hint="Ingrese la direccion"
+        android:drawableLeft="@drawable/map"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
         android:drawablePadding="20dp"/>
     <EditText
         android:layout_width="match_parent"
+        android:drawableLeft="@drawable/phonel"
+
         android:layout_height="wrap_content"
         android:id="@+id/ediMediCspecialidad"
         android:background="#30ffffff"
@@ -81,8 +98,10 @@
         android:drawableLeft="@drawable/insert"
         android:text="Agregar"
         android:layout_gravity="center"
-        android:backgroundTint="#50475E"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Contacto_agregar" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

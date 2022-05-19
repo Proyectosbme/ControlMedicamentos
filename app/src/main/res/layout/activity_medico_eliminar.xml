@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    style="@style/Theme.AppCompat.Light"
+    android:background="@color/teal_700"
     tools:context=".Medico.MedicoEliminarActivity">
 
     <TextView
@@ -24,6 +25,8 @@
         android:id="@+id/ediMEliCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/id"
+
         android:background="#30ffffff"
         android:hint="Ingrese el ID de medico"
         android:textColorHint="@color/black"
@@ -37,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Eliminar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:drawableLeft="@drawable/delete"

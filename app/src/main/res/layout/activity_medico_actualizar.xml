@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@color/teal_700"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Medico.MedicoActualizarActivity">
@@ -62,9 +62,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/ediMANombre"
         android:background="#30ffffff"
+        android:drawableLeft="@drawable/user"
+
         android:hint="Ingrese Nombre del medico"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
+
         android:layout_margin="10dp"
         android:drawablePadding="20dp"/>
     <EditText
@@ -76,6 +79,8 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
+        android:drawableLeft="@drawable/tipo"
+
         android:drawablePadding="20dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -86,7 +91,7 @@
         android:drawableLeft="@drawable/insert"
 
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Actualizar_Medico" />

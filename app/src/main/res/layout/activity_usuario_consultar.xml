@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/degradado"
+    android:background="@color/teal_700"
     android:layout_height="match_parent"
     tools:context=".Usuarios.UsuarioConsultarActivity">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lista de usuarios"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
         android:drawableLeft="@drawable/listt"
@@ -22,6 +22,8 @@
     <EditText
         android:id="@+id/ediUNombre2"
         android:layout_width="match_parent"
+        android:drawableLeft="@drawable/search"
+
         android:layout_height="wrap_content"
         android:background="#30ffffff"
         android:hint="Ingrese el nombre del usuario:"
@@ -36,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Buscar"
         android:layout_gravity="center"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="Consultar"

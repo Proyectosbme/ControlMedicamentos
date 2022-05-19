@@ -83,8 +83,7 @@ public class ContactoConsultarActivity extends AppCompatActivity {
         listaPersonas.add("Seleccione");
         for (int i=0; i<PersonasList.size();i++)
         {
-            listaPersonas.add("Id :"+PersonasList.get(i).getIdMedico()+"-->"+
-                    "Nombre :"+PersonasList.get(i).getNombre()+" "+PersonasList.get(i).getEspecialidad()+"\n");
+            listaPersonas.add("Nombre :"+PersonasList.get(i).getNombre()+"---"+PersonasList.get(i).getEspecialidad()+"\n");
         }
     }
 
