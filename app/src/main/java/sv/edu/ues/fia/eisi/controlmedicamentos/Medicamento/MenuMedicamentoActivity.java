@@ -29,8 +29,12 @@ public class MenuMedicamentoActivity extends AppCompatActivity {
     }
 
     public void Actualizar_Medicamento(View view) {
+        Intent intent = new Intent(MenuMedicamentoActivity.this, MedicamentosEditarActivity.class);
+        startActivity(intent);
     }
 
     public void Elimnar_Medicamento(View view) {
+        Intent intent = new Intent(MenuMedicamentoActivity.this, MedicamentosEliminarActivity.class);
+        startActivity(intent);
     }
 }

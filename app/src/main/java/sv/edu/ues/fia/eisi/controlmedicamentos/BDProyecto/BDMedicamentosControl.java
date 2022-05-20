@@ -306,7 +306,7 @@ public class BDMedicamentosControl {
         String regAfectados="Medicos eliminados = ";
         int contador=0;
         contador+=db.delete("enfermedad", "idEnfermedad='"+enfermedad.getIdEnfermedad()+"'", null);
-
+        contador+=db.delete("medicamento", "idEnfermedad='"+enfermedad.getIdEnfermedad()+"'", null);
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+enfermedad.getIdEnfermedad();
         }
@@ -341,6 +341,40 @@ public class BDMedicamentosControl {
         }
         return regInsertados;
 
+    }
+    public String ActualizarMedicamento(Medicamento medicamento){
+        String regAfectados=" ";
+        int contador=0;
+
+            String[] id = {medicamento.getIdMedicamento()};
+            ContentValues cond = new ContentValues();
+            cond.put("nombre",medicamento.getNombreEnf());
+            cond.put("tipo",medicamento.getTipo());
+            contador+=db.update("medicamento", cond, "idMedicamento= ?",id);
+
+        if (contador>=1){
+            regAfectados+=contador+"Se actualizo el registro "+medicamento.getIdMedicamento();
+        }
+        else{
+            regAfectados="No se actualizo ningun Medico";
+        }
+        return regAfectados;
+
+
+    }
+    public String eliminarMedicamento(Medicamento medicamento){
+        String regAfectados=" ";
+        int contador=0;
+        contador+=db.delete("medicamento", "idMedicamento='"+medicamento.getIdMedicamento()+"'", null);
+
+        if (contador>=1){
+            regAfectados+=contador+"Se elimino el registro "+medicamento.getIdMedicamento();
+        }
+        else{
+            regAfectados="No se elimino ningun Medico";
+        }
+
+        return regAfectados;
     }
 
 

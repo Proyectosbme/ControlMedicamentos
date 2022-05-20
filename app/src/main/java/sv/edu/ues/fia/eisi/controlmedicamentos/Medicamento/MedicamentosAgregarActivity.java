@@ -58,8 +58,7 @@ public class MedicamentosAgregarActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
-
-
+                    PersonasListUsuario.clear();
                 idUsuarioEnfermedad=PersonasListEnfermedad.get(i-1).getIdUsuario();
                 idMedico=PersonasListEnfermedad.get(i-1).getIdMedico();
                 idEnfermedad=PersonasListEnfermedad.get(i-1).getIdEnfermedad();

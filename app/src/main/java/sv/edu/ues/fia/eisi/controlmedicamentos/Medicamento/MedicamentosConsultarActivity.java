@@ -50,6 +50,7 @@ public class MedicamentosConsultarActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
+
                     idUsuario=listaEnfermedad.get(i-1).getIdUsuario();
                     idMedico=listaEnfermedad.get(i-1).getIdMedico();
                     idEnfermedad=listaEnfermedad.get(i-1).getIdEnfermedad();
