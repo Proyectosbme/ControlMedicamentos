@@ -39,7 +39,6 @@ public class UsuarioActualizarActivity extends AppCompatActivity {
         genero=ediGenero.getText().toString();
         correo=ediCorreo.getText().toString();
         newcorreo=edinewcorreo.getText().toString();
-
         String regInsertados;
 
         Usuario usuario =new Usuario();
@@ -48,10 +47,8 @@ public class UsuarioActualizarActivity extends AppCompatActivity {
         usuario.setEdad(edad);
         usuario.setGenero(genero);
         usuario.setCorreo(newcorreo);
-
         Usuario usuario2 =new Usuario();
         usuario2.setCorreo(correo);
-
         helper.abrir();
         regInsertados=helper.actualizar(usuario,usuario2);
         helper.cerrar();

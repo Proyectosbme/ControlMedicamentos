@@ -22,7 +22,7 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.R;
 public class MedicoActualizarActivity extends AppCompatActivity {
 
     private EditText ediNombreM,EdiEspecialidadM;
-    private String NombreMA,EspecialidadMA,usuarioidA;
+    private String NombreMA,EspecialidadMA,usuarioidA,idMedicox;
     private Spinner comboUsuario;
     private ArrayList<String> listaPersonas;
     private ArrayList<Medico> PersonasList;
@@ -47,6 +47,7 @@ public class MedicoActualizarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
                     usuarioidA=PersonasList.get(i-1).getIdUsuariom();
+                    idMedicox=PersonasList.get(i-1).getIdMedico();
                     ediNombreM.setText(PersonasList.get(i-1).getNombre());
                     EdiEspecialidadM.setText(PersonasList.get(i-1).getEspecialidad());
                 }
@@ -65,13 +66,14 @@ public class MedicoActualizarActivity extends AppCompatActivity {
         SQLiteDatabase db=conn.getReadableDatabase();
         Medico persona=null;
         PersonasList=new ArrayList<Medico>();
-        Cursor cursor=db.rawQuery("select idUsuario,nombre,especialidad from medico ", null);
+        Cursor cursor=db.rawQuery("select idMedico,idUsuario,nombre,especialidad from medico ", null);
 
         while (cursor.moveToNext()){
             Medico medico = new Medico();
-            medico.setIdUsuariom(cursor.getString(0));
-            medico.setNombre(cursor.getString(1));
-            medico.setEspecialidad(cursor.getString(2));
+            medico.setIdMedico(cursor.getString(0));
+            medico.setIdUsuariom(cursor.getString(1));
+            medico.setNombre(cursor.getString(2));
+            medico.setEspecialidad(cursor.getString(3));
             PersonasList.add(medico);
         }
         obtenerLista();
@@ -82,33 +84,41 @@ public class MedicoActualizarActivity extends AppCompatActivity {
         listaPersonas = new ArrayList<String>();
         listaPersonas.add("Seleccione");
         for (int i=0; i<PersonasList.size();i++){
-            listaPersonas.add("IdU"+PersonasList.get(i).getIdUsuariom()+"-->"+
-                    "Nombre :"+PersonasList.get(i).getNombre()+"--"+PersonasList.get(i).getEspecialidad()+"\n");
+            listaPersonas.add("Nombre :"+PersonasList.get(i).getNombre()+"--"+
+                                         PersonasList.get(i).getEspecialidad()+"\n");
         }
     }
 
      public void Actualizar_Medico(View view) {
+         if (ediNombreM.getText().toString().equals("")){
+
+             Toast.makeText(this,"seleccione un medico" , Toast.LENGTH_SHORT).show();
+
+         }
+         else {
+
+
+             NombreMA= ediNombreM.getText().toString();
+             EspecialidadMA=EdiEspecialidadM.getText().toString();
+             String regInsertados;
+             Medico medicos  =new Medico();
+             medicos.setNombre(NombreMA);
+             medicos.setEspecialidad(EspecialidadMA);
+
+             Medico medico =new Medico();
+             medico.setIdMedico(idMedicox);
         try {
 
-
-        NombreMA= ediNombreM.getText().toString();
-        EspecialidadMA=EdiEspecialidadM.getText().toString();
-        String regInsertados;
-        Medico medicos  =new Medico();
-        medicos.setIdUsuariom(usuarioidA);
-        medicos.setNombre(NombreMA);
-        medicos.setEspecialidad(EspecialidadMA);
-
-         Medico medico =new Medico();
-         medico.setIdUsuariom(usuarioidA);
 
             helper.abrir();
             regInsertados=helper.actualizarMedico(medicos,medico);
             helper.cerrar();
             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+
         }
         catch(Exception e){
             Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();
         }
+         }
     }
 }

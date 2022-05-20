@@ -51,6 +51,7 @@ public class ContactoConsultarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
                     idMedico=PersonasList.get(i-1).getIdMedico();
+                    nombreb=PersonasList.get(i-1).getNombre();
                 }
                 else{}
             }
@@ -93,8 +94,6 @@ public class ContactoConsultarActivity extends AppCompatActivity {
 //_____________________________________________LIST VIEW
     public void consultarUsuarios2() {
         try {
-
-
         SQLiteDatabase db=DBH.getReadableDatabase();
         listaUsuario= new ArrayList<Contacto>();
         String[] id1 = {idMedico};
@@ -116,13 +115,19 @@ public class ContactoConsultarActivity extends AppCompatActivity {
         }
     }
     private void obtenerLista() {
+        if (listaUsuario.size()!=0){
+
+
         listaInformacion = new ArrayList<String>();
         for (int i=0; i<listaUsuario.size();i++){
-            listaInformacion.add(
-                    "Id :"+listaUsuario.get(i).getIdUsuario()+"\n"+
-                            "IdMedico :"+listaUsuario.get(i).getIdMedico()+"\n"+
-                              "Direccion :"+listaUsuario.get(i).getDireccion()+"\n"+
-                            "Telefono :"+listaUsuario.get(i).getTelefono());
+            listaInformacion.add("Direccion :"+listaUsuario.get(i).getDireccion()+"\n"+
+                                 "Telefono :"+listaUsuario.get(i).getTelefono());
+         }
+        }else{
+            Toast.makeText(this,"No hay contacto para el medico :"+nombreb , Toast.LENGTH_SHORT).show();
+            listaInformacion = new ArrayList<String>();
+            listaInformacion.add("Direccion :\n"+
+                                 "Telefono :");
         }
     }
 
@@ -136,7 +141,8 @@ public class ContactoConsultarActivity extends AppCompatActivity {
                 listviewpersonas.setAdapter(adapter);
 
             }else{
-                Toast.makeText(this,"No hay usuarios con el nombre "+nombreb , Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(this,"No hay contacto para el medico :"+nombreb , Toast.LENGTH_SHORT).show();
 
             }
         }catch(Exception e){

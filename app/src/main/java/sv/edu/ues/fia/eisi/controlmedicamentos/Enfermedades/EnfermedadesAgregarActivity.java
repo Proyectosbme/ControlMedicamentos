@@ -121,9 +121,16 @@ public class EnfermedadesAgregarActivity extends AppCompatActivity {
     private void obtenerListaUsuario() {
         listaPersonasMedico = new ArrayList<String>();
         listaPersonasMedico.add("Seleccione");
+        if (PersonasListMedico.size() !=0){
+
+
         for (int f=0; f<PersonasListMedico.size();f++)
         {
             listaPersonasMedico.add("Nombre :"+PersonasListMedico.get(f).getNombre()+" Especialidad :"+PersonasListMedico.get(f).getEspecialidad()+"\n");
+        }
+        }else{
+            Toast.makeText(this,"seleccione Medico" , Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -165,13 +172,11 @@ public class EnfermedadesAgregarActivity extends AppCompatActivity {
 
                   Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
-                  Toast.makeText(this,idUsuarioEnfermedad+idMedico+NombreEnf+fecha+tipo , Toast.LENGTH_SHORT).show();
 
               }catch (Exception e){
                   Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();
 
         }
-        Toast.makeText(this,idUsuarioEnfermedad+idMedico+NombreEnf+fecha+tipo , Toast.LENGTH_SHORT).show();
 
     }
 

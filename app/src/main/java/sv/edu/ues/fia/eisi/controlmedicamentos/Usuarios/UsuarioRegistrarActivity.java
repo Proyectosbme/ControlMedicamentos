@@ -41,9 +41,7 @@ public class UsuarioRegistrarActivity extends AppCompatActivity {
         contraseña=ediContraseña.getText().toString();
         contraseña2=ediContraseña2.getText().toString();
         correo=ediCorreo.getText().toString();
-
         if (contraseña.equals(contraseña2)){
-
          String regInsertados;
         Usuario usuario =new Usuario();
         usuario.setNombre(nombre);
@@ -52,7 +50,6 @@ public class UsuarioRegistrarActivity extends AppCompatActivity {
         usuario.setGenero(genero);
         usuario.setContraseña(contraseña);
         usuario.setCorreo(correo);
-
         helper.abrir();
         regInsertados=helper.insertar(usuario);
         helper.cerrar();

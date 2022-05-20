@@ -95,8 +95,6 @@ public class ContactoAgregarActivity extends AppCompatActivity {
         contacto.setIdUsuario(usuarioid);
         contacto.setDireccion(direccion);
         contacto.setTelefono(telefono);
-        Toast.makeText(this,medicoid+usuarioid+direccion+telefono , Toast.LENGTH_SHORT).show();
-
 
             helper.abrir();
             regInsertados=helper.insertarContacto(contacto);
@@ -106,7 +104,8 @@ public class ContactoAgregarActivity extends AppCompatActivity {
         }
 
         catch(Exception e){
-            Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Error/Porfavor lenar todos los campus" , Toast.LENGTH_SHORT).show();
+            ediDireccion.findFocus();
         }
 
     }

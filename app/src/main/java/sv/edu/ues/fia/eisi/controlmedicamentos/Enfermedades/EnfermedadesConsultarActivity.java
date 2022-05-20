@@ -25,10 +25,10 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
 
     private Spinner comboUsuario;
     private ListView listviewEnfermedades;
-    private ArrayList<String> listaInformacion;
-    private ArrayList<String> listaPersonas;
-    private ArrayList<Usuario> PersonasList;
-    private ArrayList<Enfermedad> listaUsuario;
+    private ArrayList<String> listaInformacionEnfermedad;
+    private ArrayList<String> listaPersonasUsuario;
+    private ArrayList<Usuario> PersonasListUsuario;
+    private ArrayList<Enfermedad> listaEnfermedad;
     private String idUsuario,nombreUsuario,apellidoUser;
 
     private BDMedicamentosControl.DatabaseHelper DBH;
@@ -42,15 +42,15 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
         listviewEnfermedades = (ListView) findViewById(R.id.lsVConsultarEnfermedad);
 
         consultarListaPersonas();
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaPersonas);
+        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaPersonasUsuario);
         comboUsuario.setAdapter(adaptador);
         comboUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
-                    idUsuario=PersonasList.get(i-1).getIdUsuario();
-                    nombreUsuario=PersonasList.get(i-1).getNombre();
-                    apellidoUser=PersonasList.get(i-1).getApellido();
+                    idUsuario=PersonasListUsuario.get(i-1).getIdUsuario();
+                    nombreUsuario=PersonasListUsuario.get(i-1).getNombre();
+                    apellidoUser=PersonasListUsuario.get(i-1).getApellido();
                 }
                 else{}
             }
@@ -63,7 +63,7 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
     private void consultarListaPersonas() {
         SQLiteDatabase db=DBH.getReadableDatabase();
         Usuario persona=null;
-        PersonasList=new ArrayList<Usuario>();
+        PersonasListUsuario=new ArrayList<Usuario>();
         Cursor cursor=db.rawQuery("select idUsuario,nombre,apellido from usuario", null);
 
         while (cursor.moveToNext()){
@@ -71,25 +71,25 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
             usuario.setIdUsuario(cursor.getString(0));
             usuario.setNombre(cursor.getString(1));
             usuario.setApellido(cursor.getString(2));
-            PersonasList.add(usuario);
+            PersonasListUsuario.add(usuario);
         }
         obtenerLista2();
 
     }
 
     private void obtenerLista2() {
-        listaPersonas = new ArrayList<String>();
-        listaPersonas.add("Seleccione");
-        for (int i=0; i<PersonasList.size();i++)
+        listaPersonasUsuario = new ArrayList<String>();
+        listaPersonasUsuario.add("Seleccione");
+        for (int i=0; i<PersonasListUsuario.size();i++)
         {
-            listaPersonas.add("Nombre :"+PersonasList.get(i).getNombre()+" "+PersonasList.get(i).getApellido()+"\n");
+            listaPersonasUsuario.add("Nombre :"+PersonasListUsuario.get(i).getNombre()+" "+PersonasListUsuario.get(i).getApellido()+"\n");
         }
     }
 
     public void consultarUsuarios2() {
         try {
             SQLiteDatabase db=DBH.getReadableDatabase();
-            listaUsuario= new ArrayList<Enfermedad>();
+            listaEnfermedad= new ArrayList<Enfermedad>();
             String[] id1 = {idUsuario};
             Cursor cursor = db.rawQuery(
                     "select idUsuario,nombreEnfermedad,fecha,tipo from enfermedad "+
@@ -101,7 +101,7 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
                 enfermedad.setNombre(cursor.getString(1));
                 enfermedad.setFecha(cursor.getString(2));
                 enfermedad.setTipo(cursor.getString(3));
-                listaUsuario.add(enfermedad);
+                listaEnfermedad.add(enfermedad);
             }
             obtenerLista();
         }catch(Exception e){
@@ -109,20 +109,20 @@ public class EnfermedadesConsultarActivity extends AppCompatActivity {
         }
     }
     private void obtenerLista() {
-        listaInformacion = new ArrayList<String>();
-        for (int i=0; i<listaUsuario.size();i++){
-            listaInformacion.add("Nombre Usuario :"+nombreUsuario+" "+apellidoUser+"\n"+
-                                 "Enfermedad :"+listaUsuario.get(i).getNombre()+"\n"+
-                                 "Fecha :"+listaUsuario.get(i).getFecha()+"\n"+
-                                 "tipo :"+listaUsuario.get(i).getTipo());
+        listaInformacionEnfermedad = new ArrayList<String>();
+        for (int i=0; i<listaEnfermedad.size();i++){
+            listaInformacionEnfermedad.add("Nombre Usuario :"+nombreUsuario+" "+apellidoUser+"\n"+
+                                 "Enfermedad :"+listaEnfermedad.get(i).getNombre()+"\n"+
+                                 "Fecha :"+listaEnfermedad.get(i).getFecha()+"\n"+
+                                 "tipo :"+listaEnfermedad.get(i).getTipo());
         }
     }
 
     public void Cond_enfermedad(View view) {
         try{
             consultarUsuarios2();
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaInformacion);
-            if (listaInformacion.size()!=0){
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaInformacionEnfermedad);
+            if (listaInformacionEnfermedad.size()!=0){
                 listviewEnfermedades.setAdapter(adapter);
 
             }else{

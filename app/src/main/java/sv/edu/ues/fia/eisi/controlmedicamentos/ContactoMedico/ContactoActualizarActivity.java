@@ -29,6 +29,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
     private ArrayList<Medico> PersonasList;
     private BDMedicamentosControl.DatabaseHelper conn;
     private BDMedicamentosControl helper;
+    boolean res;
 
 
     @Override
@@ -48,6 +49,7 @@ public class ContactoActualizarActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
+                    listaContacto.clear();
                     ediDireccion.setText("");
                     EdiTelefono.setText("");
                     usuarioid=PersonasList.get(i-1).getIdMedico();
@@ -64,8 +66,14 @@ public class ContactoActualizarActivity extends AppCompatActivity {
                         contacto.setTelefono(cursor.getString(2));
                         listaContacto.add(contacto);
                     }
-                    ediDireccion.setText(listaContacto.get(i-1).getDireccion());
-                    EdiTelefono.setText(listaContacto.get(i-1).getTelefono());
+                    if (listaContacto.size()!=0){
+                        ediDireccion.setText(listaContacto.get(i-1).getDireccion());
+                        EdiTelefono.setText(listaContacto.get(i-1).getTelefono());
+                        res =true;
+                    }else{
+                        res=false;
+                    }
+
 
                 }
                 else{
@@ -106,6 +114,9 @@ public class ContactoActualizarActivity extends AppCompatActivity {
     public void Contacto_Actualizar(View view) {
 
         try {
+            if (res){
+
+
         direccion= ediDireccion.getText().toString();
         telefono=EdiTelefono.getText().toString();
 
@@ -114,14 +125,16 @@ public class ContactoActualizarActivity extends AppCompatActivity {
         contacto.setIdMedico(usuarioid);
         contacto.setDireccion(direccion);
         contacto.setTelefono(telefono);
-        Toast.makeText(this,usuarioid+direccion+telefono , Toast.LENGTH_SHORT).show();
-
 
             helper.abrir();
             regInsertados=helper.actualizarContacto(contacto);
             helper.cerrar();
 
             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "agregar primero el contacto", Toast.LENGTH_SHORT).show();
+
+            }
         }
         catch(Exception e){
             Toast.makeText(this,"Error/algun campo esta vacio" , Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Contacto;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Enfermedad;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medicamento;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 
@@ -30,7 +31,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "Control.s3db";
+            private static final String BASE_DATOS = "ControlMedicamentos.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -43,6 +44,7 @@ public class BDMedicamentosControl {
                     db.execSQL("CREATE TABLE medico(idMedico INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,nombre VARCHAR(25),especialidad VARCHAR(25));");
                     db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
                     db.execSQL("CREATE TABLE enfermedad(idEnfermedad INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,idUsuario INTEGER,nombreEnfermedad VARCHAR(75),fecha VARCHAR(25),tipo VARCHAR(25));");
+                    db.execSQL("CREATE TABLE medicamento(idMedicamento INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,idEnfermedad INTEGER,idUsuario INTEGER,nombre VARCHAR(50),tipo VARCHAR(25));");
 
 
                 }catch(SQLException e){
@@ -74,7 +76,7 @@ public class BDMedicamentosControl {
 //--------------Inicio de usuario-------------------------------------------------
 
     public String insertar(Usuario usuario){
-            String regInsertados="Registro Insertado Nº= ";
+            String regInsertados="Usuario registrado Nº= ";
             long contador=0;
             //,,,,,,
             if(verificarIntegridad(usuario,1)){
@@ -113,9 +115,9 @@ public class BDMedicamentosControl {
             cond.put("genero",usuario.getGenero());
             cond.put("correo",usuario.getCorreo());
             db.update("usuario", cond, "correo = ?", id);
-            return "Registro Actualizado Correctamente";
+            return "Usuario Actualizado Correctamente";
         }else{
-            return "Registro no Existe";
+            return "No Existe el usuario";
         }
     }
     public Usuario consultarUsuario(String correo){
@@ -136,7 +138,7 @@ public class BDMedicamentosControl {
 
     public String eliminarUsuario(Usuario usuario){
 
-        String regAfectados="filas afectadas= ";
+        String regAfectados="Usuario eliminado = ";
         int contador=0;
 
         if (verificarIntegridad(usuario,4))
@@ -152,7 +154,7 @@ public class BDMedicamentosControl {
             regAfectados+=contador+"/nSe elimino el registro "+usuario.getCorreo();
         }
         else{
-            regAfectados="No se elimino ningun registro";
+            regAfectados="No se elimino ningun Usuario";
         }
 
         return regAfectados;
@@ -166,9 +168,10 @@ public class BDMedicamentosControl {
     //--------------Inicio de Medico-------------------------------------------------
     //--------------Inicio de Medico-------------------------------------------------
     //--------------Inicio de Medico-------------------------------------------------
+
     public String insertarMedico(Medico medico){
 
-        String regInsertados="Registro Insertado Nº= ";
+        String regInsertados="Medico insertado Nº= ";
         long contador=0;
 
         ContentValues conn = new ContentValues();
@@ -193,7 +196,7 @@ public class BDMedicamentosControl {
 
 
     public String eliminarMedico(Medico medico){
-        String regAfectados="filas afectadas= ";
+        String regAfectados="Medicos eliminados = ";
         int contador=0;
         contador+=db.delete("medico", "idMedico='"+medico.getIdMedico()+"'", null);
 
@@ -201,19 +204,18 @@ public class BDMedicamentosControl {
             regAfectados+=contador+"/nSe elimino el registro "+medico.getIdMedico();
         }
         else{
-            regAfectados="No se elimino ningun registro";
+            regAfectados="No se elimino ningun Medico";
         }
 
         return regAfectados;
     }
     public String actualizarMedico(Medico medico,Medico medico2){
         if(verificarIntegridad(medico2, 5)){
-            String[] id = {medico2.getIdUsuariom()};
+            String[] id = {medico2.getIdMedico()};
             ContentValues cond = new ContentValues();
-            cond.put("idUsuario",medico.getIdUsuariom());
             cond.put("nombre",medico.getNombre());
             cond.put("especialidad",medico.getEspecialidad());
-            db.update("medico", cond, "idUsuario = ?", id);
+            db.update("medico", cond, "idMedico= ?",id);
             return "Registro Actualizado Correctamente";
         }else{
             return "Registro no Existe";
@@ -229,7 +231,7 @@ public class BDMedicamentosControl {
 
     public String insertarContacto(Contacto contacto){
 
-        String regInsertados="Registro Insertado Nº= ";
+        String regInsertados="Contacto insertado Nº= ";
         long contador=0;
 
         if(verificarIntegridad(contacto,7)){
@@ -277,7 +279,7 @@ public class BDMedicamentosControl {
 
     public String insertarEnfermedad(Enfermedad enfermedad){
 
-        String regInsertados="Registro Insertado Nº= ";
+        String regInsertados="Insertar Enfermedad Nº= ";
         long contador=0;
 
         ContentValues conn = new ContentValues();
@@ -289,6 +291,46 @@ public class BDMedicamentosControl {
         conn.put("tipo", enfermedad.getTipo());
 
         contador=db.insert("enfermedad", null, conn);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
+    public String eliminarEnfermedad(Enfermedad enfermedad){
+        String regAfectados="Medicos eliminados = ";
+        int contador=0;
+        contador+=db.delete("enfermedad", "idEnfermedad='"+enfermedad.getIdEnfermedad()+"'", null);
+
+        if (contador>=1){
+            regAfectados+=contador+"/nSe elimino el registro "+enfermedad.getIdEnfermedad();
+        }
+        else{
+            regAfectados="No se elimino ningun Medico";
+        }
+
+        return regAfectados;
+    }
+
+    public String insertarMedicamento(Medicamento medicamento){
+
+        String regInsertados="Insertar medicamento Nº= ";
+        long contador=0;
+
+        ContentValues conn = new ContentValues();
+        conn.put("idMedicamento",medicamento.getIdMedicamento());
+        conn.put("idMedico", medicamento.getIdMedico());
+        conn.put("idEnfermedad", medicamento.getIdEnfermedad());
+        conn.put("idUsuario", medicamento.getIdUsuario());
+        conn.put("nombre", medicamento.getNombreEnf());
+        conn.put("tipo",medicamento.getTipo());
+
+        contador=db.insert("medicamento", null, conn);
 
         if(contador==-1 || contador==0)
         {
@@ -361,9 +403,9 @@ public class BDMedicamentosControl {
             {
 //verificar que al modificar nota exista carnet del alumno, el    codigo de materia y el ciclo
                 Medico medico1 = (Medico) dato;
-                String[] ids = {medico1.getIdUsuariom()};
+                String[] ids = {medico1.getIdMedico()};
                 abrir();
-                Cursor c = db.query("medico", null, "idUsuario = ?", ids,
+                Cursor c = db.query("medico", null, "idMedico = ?", ids,
                         null, null, null);
                 if(c.moveToFirst()){
 //Se encontraron datos

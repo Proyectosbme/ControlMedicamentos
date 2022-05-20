@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Medicamento.MenuMedicamentoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Enfermedades.MenuEnfermedadesActivity"
             android:exported="false" />
         <activity

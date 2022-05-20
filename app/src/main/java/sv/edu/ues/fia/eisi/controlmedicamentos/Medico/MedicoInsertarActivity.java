@@ -47,6 +47,7 @@ public class MedicoInsertarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i!=0){
                     usuarioid=PersonasList.get(i-1).getIdUsuario();
+
                 }
                 else{
                     ediNombreM.setText("");
@@ -81,13 +82,17 @@ public class MedicoInsertarActivity extends AppCompatActivity {
         listaPersonas = new ArrayList<String>();
         listaPersonas.add("Seleccione");
         for (int i=0; i<PersonasList.size();i++){
-            listaPersonas.add("Id :"+PersonasList.get(i).getIdUsuario()+"-->"+
-                    "Nombre :"+PersonasList.get(i).getNombre()+" "+PersonasList.get(i).getApellido()+"\n");
+            listaPersonas.add("Nombre :"+PersonasList.get(i).getNombre()+" "+PersonasList.get(i).getApellido()+"\n");
         }
     }
-
     public void Registrar_Medico(View view) {
         try {
+
+            if (ediNombreM.getText().toString().equals("") || EdiEspecialidadM.getText().toString().equals("") ){
+                Toast.makeText(this, "Ingrese nombre y especialidad", Toast.LENGTH_SHORT).show();
+
+            }else{
+
 
         NombreM= ediNombreM.getText().toString();
         EspecialidadM=EdiEspecialidadM.getText().toString();
@@ -105,7 +110,7 @@ public class MedicoInsertarActivity extends AppCompatActivity {
 
             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
-
+            }
         }
 
         catch(Exception e){
