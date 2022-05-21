@@ -78,6 +78,7 @@
             android:text="Actualizar"
             android:drawableLeft="@drawable/update"
             android:textSize="15dp"
+            android:onClick="actt_enfermedad"
             />
 
         <Button

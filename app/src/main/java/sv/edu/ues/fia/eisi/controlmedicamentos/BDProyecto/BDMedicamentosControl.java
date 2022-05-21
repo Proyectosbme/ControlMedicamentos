@@ -1,5 +1,6 @@
 package sv.edu.ues.fia.eisi.controlmedicamentos.BDProyecto;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,10 +17,8 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
 public class BDMedicamentosControl {
 
         private static final String[]camposUsuarioconsulta=new String []{"nombre","correo","contraseña"};
-
         private static final String[]camposUsuario = new String []{"idUsuario","nombre","apellido","edad","genero","contraseña","correo"};
         private static final String[]camposMedico = new String [] {"idMedico","idUsuario","nombre","especialidad"};
-
         private static final String[]camposEstablecimiento = new String [] {"idEstablecimiento","nombre","direccion","telefono","idUsuario"};
         private static final String[]camposCitaMedica = new String [] {"idCitaMedica","idMedico","titulo","telefono","idUsuario"};
         private static final String[]camposContacto = new String [] {"idContacto","idMedico","direccion","telefono"};
@@ -144,12 +143,17 @@ public class BDMedicamentosControl {
         if (verificarIntegridad(usuario,4))
         {
             contador+=db.delete("medico", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+
         }
         if (verificarIntegridad(usuario,8))
         {
             contador+=db.delete("medicoContacto", "idUsuario='"+usuario.getIdUsuario()+"'", null);
         }
         contador+=db.delete("usuario", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+        contador+=db.delete("enfermedad", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+        contador+=db.delete("medicamento", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+
+
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+usuario.getCorreo();
         }
@@ -198,7 +202,13 @@ public class BDMedicamentosControl {
     public String eliminarMedico(Medico medico){
         String regAfectados="Medicos eliminados = ";
         int contador=0;
+
         contador+=db.delete("medico", "idMedico='"+medico.getIdMedico()+"'", null);
+        contador+=db.delete("medicamento", "idMedico='"+medico.getIdMedico()+"'", null);
+        contador+=db.delete("enfermedad", "idMedico='"+medico.getIdMedico()+"'", null);
+        contador+=db.delete("medicoContacto", "idMedico='"+medico.getIdMedico()+"'", null);
+
+
 
         if (contador>=1){
             regAfectados+=contador+"/nSe elimino el registro "+medico.getIdMedico();
@@ -302,8 +312,29 @@ public class BDMedicamentosControl {
         return regInsertados;
 
     }
+    public String ActualizarEnfermedad(Enfermedad enfermedad){
+        String regAfectados=" ";
+        int contador=0;
+
+        String[] id = {enfermedad.getIdEnfermedad()};
+        ContentValues cond = new ContentValues();
+        cond.put("nombreEnfermedad",enfermedad.getNombre());
+        cond.put("fecha",enfermedad.getFecha());
+        cond.put("tipo",enfermedad.getTipo());
+        contador+=db.update("enfermedad", cond, "idEnfermedad= ?",id);
+
+        if (contador>=1){
+            regAfectados+=contador+"Se actualizo el registro "+enfermedad.getIdEnfermedad();
+        }
+        else{
+            regAfectados="No se actualizo ningun Medico";
+        }
+        return regAfectados;
+
+
+    }
     public String eliminarEnfermedad(Enfermedad enfermedad){
-        String regAfectados="Medicos eliminados = ";
+        String regAfectados="Enfermedades eliminados = ";
         int contador=0;
         contador+=db.delete("enfermedad", "idEnfermedad='"+enfermedad.getIdEnfermedad()+"'", null);
         contador+=db.delete("medicamento", "idEnfermedad='"+enfermedad.getIdEnfermedad()+"'", null);
@@ -376,6 +407,7 @@ public class BDMedicamentosControl {
 
         return regAfectados;
     }
+
 
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{

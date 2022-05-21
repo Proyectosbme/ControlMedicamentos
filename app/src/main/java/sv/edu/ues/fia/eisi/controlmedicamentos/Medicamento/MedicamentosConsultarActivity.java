@@ -2,9 +2,13 @@ package sv.edu.ues.fia.eisi.controlmedicamentos.Medicamento;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +22,12 @@ import sv.edu.ues.fia.eisi.controlmedicamentos.BDProyecto.BDMedicamentosControl;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Enfermedad;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medicamento;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
+import sv.edu.ues.fia.eisi.controlmedicamentos.ContactoMedico.MenuContactoActivity;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Enfermedades.MenuEnfermedadesActivity;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Medico.MenuMedicoActivity;
+import sv.edu.ues.fia.eisi.controlmedicamentos.MenuPrincipalActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.R;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Usuarios.MenuUsuarioActivity;
 
 public class MedicamentosConsultarActivity extends AppCompatActivity {
 
@@ -180,6 +189,50 @@ public class MedicamentosConsultarActivity extends AppCompatActivity {
             }
         }catch(Exception e){
             Toast.makeText(this,"selecciones una enfermedad" , Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menuopciones, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.medicamento:
+
+                return true;
+            case R.id.menuPrincipal:
+                intent= new Intent(MedicamentosConsultarActivity.this, MenuPrincipalActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menuMedicamento:
+                intent = new Intent(MedicamentosConsultarActivity.this, MenuMedicamentoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menuUsuario:
+                intent = new Intent(MedicamentosConsultarActivity.this, MenuUsuarioActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menuEnfermedad:
+                intent = new Intent(MedicamentosConsultarActivity.this, MenuEnfermedadesActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menuMedico:
+                intent = new Intent(MedicamentosConsultarActivity.this, MenuMedicoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menuContacto:
+                intent = new Intent(MedicamentosConsultarActivity.this, MenuContactoActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

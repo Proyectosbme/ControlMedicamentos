@@ -39,4 +39,9 @@ public class MenuEnfermedadesActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuEnfermedadesActivity.this, EnfermedadesEliminarActivity.class);
         startActivity(intent);
     }
+
+    public void actt_enfermedad(View view) {
+        Intent intent = new Intent(MenuEnfermedadesActivity.this, EnfermedadesEditarActivity.class);
+        startActivity(intent);
+    }
 }
