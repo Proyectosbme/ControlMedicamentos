@@ -79,7 +79,7 @@
             android:text="Actualizar"
             android:drawableLeft="@drawable/update"
             android:textSize="15dp"
-            android:onClick="Actualizar_Medicamento"/>
+            />
 
         <Button
             android:layout_width="64dp"
@@ -94,7 +94,7 @@
             android:textSize="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:onClick="Elimnar_Medicamento"/>
+            android:onClick="Eliminar_establecimiento"/>
     </LinearLayout>
 
 </LinearLayout>

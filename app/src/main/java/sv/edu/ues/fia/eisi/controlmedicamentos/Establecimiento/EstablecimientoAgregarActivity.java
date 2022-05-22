@@ -89,10 +89,11 @@ public class EstablecimientoAgregarActivity extends AppCompatActivity {
     public void Agregar_establecimiento(View view) {
         try {
             if (idUsuario!=""){
+                nombre=ediNombre.getText().toString();
+                direccion=ediDireccion.getText().toString();
+                telefono=ediTelefono.getText().toString();
                 if (nombre!="" || direccion!="" || telefono!=""){
-                    nombre=ediNombre.getText().toString();
-                    direccion=ediDireccion.getText().toString();
-                    telefono=ediTelefono.getText().toString();
+
                             String regInsertados;
                             Establecimiento establecimiento=new Establecimiento();
                             establecimiento.setIdUsuario(idUsuario);
@@ -103,6 +104,12 @@ public class EstablecimientoAgregarActivity extends AppCompatActivity {
                             regInsertados=helper.insertarEstablecimiento(establecimiento);
                             helper.cerrar();
                             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+                    nombre="";
+                    direccion="";
+                    telefono="";
+                    ediNombre.setText("");
+                    ediDireccion.setText("");
+                    ediTelefono.setText("");
                 }else
                 {
                     Toast.makeText(this,"llene todos los campos" , Toast.LENGTH_SHORT).show();

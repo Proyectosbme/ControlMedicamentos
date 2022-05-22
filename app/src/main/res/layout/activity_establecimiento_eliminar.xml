@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/teal_700"
     android:layout_height="match_parent"
     tools:context=".Establecimiento.EstablecimientoEliminarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/eliminarhospital"
+        android:text="Eliminar Establecimiento"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+
+
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/black"
+        android:drawableLeft="@drawable/enfermedad"
+        android:text="Seleccione el local"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+
+    <Spinner
+        android:id="@+id/comboestabelimi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:text="Eliminar"
+        android:textSize="15dp"
+        android:outlineAmbientShadowColor="@color/white"
+        android:scrollbarSize="30dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:drawableLeft="@drawable/delete"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnURegistrar"
+        android:text="Eliminar"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/purple_200"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:onClick="Eliminarestablecimiento" />
+</LinearLayout>

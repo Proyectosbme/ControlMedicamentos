@@ -27,4 +27,9 @@ public class MenuEstablecimientoActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuEstablecimientoActivity.this, EstablecimientoAgregarActivity.class);
         startActivity(intent);
     }
+
+    public void Eliminar_establecimiento(View view) {
+        Intent intent = new Intent(MenuEstablecimientoActivity.this, EstablecimientoEliminarActivity.class);
+        startActivity(intent);
+    }
 }

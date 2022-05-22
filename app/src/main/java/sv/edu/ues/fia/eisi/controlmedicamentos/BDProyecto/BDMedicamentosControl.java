@@ -31,7 +31,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamentosxd.s3db";
+            private static final String BASE_DATOS = "controlMedicamentosxd.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -154,6 +154,9 @@ public class BDMedicamentosControl {
         contador+=db.delete("usuario", "idUsuario='"+usuario.getIdUsuario()+"'", null);
         contador+=db.delete("enfermedad", "idUsuario='"+usuario.getIdUsuario()+"'", null);
         contador+=db.delete("medicamento", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+        contador+=db.delete("establecimiento", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+        contador+=db.delete("medicoContacto", "idUsuario='"+usuario.getIdUsuario()+"'", null);
+        contador+=db.delete("medico", "idUsuario='"+usuario.getIdUsuario()+"'", null);
 
 
         if (contador>=1){
@@ -412,7 +415,7 @@ public class BDMedicamentosControl {
 
     public String insertarEstablecimiento(Establecimiento establecimiento){
 
-        String regInsertados="Insertar establecimiento Nº= ";
+        String regInsertados="Insertardo establecimiento Nº= ";
         long contador=0;
 
         ContentValues conn = new ContentValues();
@@ -433,6 +436,20 @@ public class BDMedicamentosControl {
         }
         return regInsertados;
 
+    }
+    public String eliminarEstablecimiento(Establecimiento establecimiento){
+        String regAfectados=" ";
+        int contador=0;
+        contador+=db.delete("establecimiento", "idEstablecimineto='"+establecimiento.getIdEstablecimiento()+"'", null);
+
+        if (contador>=1){
+            regAfectados+=contador+"Se elimino el registro "+establecimiento.getIdEstablecimiento();
+        }
+        else{
+            regAfectados="No se elimino ningun Establecimiento";
+        }
+
+        return regAfectados;
     }
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{

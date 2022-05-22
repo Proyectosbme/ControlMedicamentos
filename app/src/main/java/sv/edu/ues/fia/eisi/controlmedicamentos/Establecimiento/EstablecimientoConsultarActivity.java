@@ -118,7 +118,7 @@ public class EstablecimientoConsultarActivity extends AppCompatActivity {
                         "---------------------------------------------------------");
             }
         }else{
-            Toast.makeText(this,"No hay contacto para el usuario selecionado :", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"No hay establecimiento para el usuario selecionado :", Toast.LENGTH_SHORT).show();
             listaInformacion = new ArrayList<String>();
             listaInformacion.add(
                     "Nombre :\n"+
@@ -128,19 +128,15 @@ public class EstablecimientoConsultarActivity extends AppCompatActivity {
     }
     public void cond_estab(View view) {
         try{
-            //listaInformacionEstablecimiento.clear();
             consultarEstablecimiento();
             if (listaInformacionEstablecimiento.size()!=0){
                 ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaInformacionEstablecimiento);
                 listviewEstablecimiento.setAdapter(adapter);
-
             }else{
-
                 listaInformacionEstablecimiento.clear();
-                
                 ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaInformacionEstablecimiento);
                 listviewEstablecimiento.setAdapter(adapter2);
-                Toast.makeText(this,"No hay contacto para el usuario selecionado:", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No hay establecimiento para el usuario selecionado:", Toast.LENGTH_SHORT).show();
 
             }
         }catch(Exception e){
