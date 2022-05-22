@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Establecimiento.MenuEstablecimientoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Establecimiento.EstablecimientoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Establecimiento.EstablecimientoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Establecimiento.EstablecimientoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Establecimiento.EstablecimientoAgregarActivity"
+            android:exported="false" />
+        <activity
             android:name=".Medicamento.MenuMedicamentoActivity"
             android:exported="false" />
         <activity

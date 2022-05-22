@@ -11,6 +11,7 @@ import android.view.View;
 
 import sv.edu.ues.fia.eisi.controlmedicamentos.ContactoMedico.MenuContactoActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Enfermedades.MenuEnfermedadesActivity;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Establecimiento.MenuEstablecimientoActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Medicamento.MenuMedicamentoActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Medico.MenuMedicoActivity;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Usuarios.MenuUsuarioActivity;
@@ -80,5 +81,15 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void MedicamentosMN(View view) {
+        Intent intent = new Intent(MenuPrincipalActivity.this, MenuMedicamentoActivity.class);
+        startActivity(intent);
+    }
+
+    public void agregar_Establecimiento(View view) {
+        Intent intent = new Intent(MenuPrincipalActivity.this, MenuEstablecimientoActivity.class);
+        startActivity(intent);
     }
 }

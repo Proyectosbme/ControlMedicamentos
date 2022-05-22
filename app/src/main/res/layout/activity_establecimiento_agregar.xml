@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/teal_700"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Enfermedades.EnfermedadesAgregarActivity">
+    tools:context=".Establecimiento.EstablecimientoAgregarActivity">
 
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Enfermedad"
-        android:drawableLeft="@drawable/addenfermedad"
+        android:text="Agregar Establecimiento"
         android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -34,14 +33,14 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
-            android:drawableLeft="@drawable/doctor"
-            android:text="Medico"
+            android:drawableLeft="@drawable/user"
+            android:text="Usuario"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
         <Spinner
-            android:id="@+id/comboUsuarioEnfermedad"
+            android:id="@+id/comboEstablcimientoUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -59,7 +58,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="275dp"
+            android:layout_width="254dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -67,77 +66,60 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
-            android:drawableLeft="@drawable/user"
-            android:text="Usuario"
+            android:text="Nombre"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ediNomUsuarioEstable"
+            android:layout_weight="1"
+            android:background="#30ffffff"
+            android:hint="ingrese el nombre"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:drawablePadding="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="Direccion "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ediDireccionEstablecimiento"
             android:layout_weight="1"
-            android:id="@+id/EdiUsuarioenferm"
             android:background="#30ffffff"
-            android:hint="Usuario"
+            android:hint="ingrese la direccion"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:drawablePadding="20dp"/>
     </LinearLayout>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ediNombreEnfermedad"
-        android:background="#30ffffff"
-        android:hint="Ingrese nombre de la enfermedad"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:drawableLeft="@drawable/coronavirus"
-
-        android:drawablePadding="20dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:drawableLeft="@drawable/calendar"
-
-            android:layout_weight="1"
-            android:backgroundTint="#793EC3"
-            android:onClick="fecha_infermedad"
-            android:text="Fecha" />
-
-        <TextView
-            android:id="@+id/ediFechaEnfermedad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="#30ffffff"
-            android:drawablePadding="20dp"
-            android:hint="DD/MM/AA"
-            android:paddingHorizontal="30dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-
-    </LinearLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -160,11 +142,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ediTipoEnfermedad"
-            android:drawableLeft="@drawable/tipo"
+            android:id="@+id/ediEstablecimientoTelefono"
             android:layout_weight="1"
             android:background="#30ffffff"
-            android:hint="ingrese el tipo"
+            android:hint="ingrese el telefono"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_margin="10dp"
@@ -173,7 +154,6 @@
             android:layout_marginRight="20dp"
             android:drawablePadding="20dp"/>
     </LinearLayout>
-
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -184,5 +164,6 @@
         android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:onClick="Agregar_enfermedad" />
+        android:onClick="Agregar_establecimiento" />
+
 </LinearLayout>

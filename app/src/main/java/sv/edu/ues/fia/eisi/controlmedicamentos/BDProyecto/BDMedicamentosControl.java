@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Contacto;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Enfermedad;
+import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Establecimiento;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medicamento;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Medico;
 import sv.edu.ues.fia.eisi.controlmedicamentos.Clases.Usuario;
@@ -30,7 +31,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamentos.s3db";
+            private static final String BASE_DATOS = "ControlMedicamentosxd.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -44,7 +45,8 @@ public class BDMedicamentosControl {
                     db.execSQL("CREATE TABLE medicoContacto(idContacto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,idMedico INTEGER,direccion VARCHAR(75),Telefono VARCHAR(25));");
                     db.execSQL("CREATE TABLE enfermedad(idEnfermedad INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,idUsuario INTEGER,nombreEnfermedad VARCHAR(75),fecha VARCHAR(25),tipo VARCHAR(25));");
                     db.execSQL("CREATE TABLE medicamento(idMedicamento INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idMedico INTEGER,idEnfermedad INTEGER,idUsuario INTEGER,nombre VARCHAR(50),tipo VARCHAR(25));");
-
+                    db.execSQL("CREATE TABLE establecimiento(idEstablecimiento INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,nombre VARCHAR(50),direccion VARCHAR(100),telefono VARCHAR(50));");
+                    db.execSQL("CREATE TABLE cita(idCita INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,idUsuario INTEGER,idEstablecimiento INTEGER,fecha VARCHAR(50),descripcion VARCHAR(100));");
 
                 }catch(SQLException e){
                     e.printStackTrace();
@@ -408,7 +410,30 @@ public class BDMedicamentosControl {
         return regAfectados;
     }
 
+    public String insertarEstablecimiento(Establecimiento establecimiento){
 
+        String regInsertados="Insertar establecimiento Nº= ";
+        long contador=0;
+
+        ContentValues conn = new ContentValues();
+        conn.put("idEstablecimiento",establecimiento.getIdEstablecimiento());
+        conn.put("idUsuario", establecimiento.getIdUsuario());
+        conn.put("nombre", establecimiento.getNombre());
+        conn.put("direccion", establecimiento.getDireccion());
+        conn.put("telefono", establecimiento.getTelefono());
+
+        contador=db.insert("establecimiento", null, conn);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{
         switch(relacion){

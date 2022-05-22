@@ -51,7 +51,6 @@ public class MedicamentosConsultarActivity extends AppCompatActivity {
         DBH = new BDMedicamentosControl.DatabaseHelper(getApplicationContext());
         comoenfermedad=(Spinner) findViewById(R.id.comboconsultaMedicamento);
         listviewMedicamentos = (ListView) findViewById(R.id.lsVConsultarMedicamento);
-
         consultarListaPersonas();
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaInformacionEnfermedad);
         comoenfermedad.setAdapter(adaptador);

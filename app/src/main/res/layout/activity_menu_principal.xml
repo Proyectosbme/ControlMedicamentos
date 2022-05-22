@@ -77,9 +77,10 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:onClick="agregar_Establecimiento"/>
 
-                />
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,7 +110,8 @@
                 android:text="Medicamentos"
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:onClick="MedicamentosMN"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
