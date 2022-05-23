@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlMedicamentos">
         <activity
+            android:name=".Dosis.DosisEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dosis.DosisConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dosis.DosisAgregarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dosis.MenuDosisActivity"
+            android:exported="false" />
+        <activity
             android:name=".Establecimiento.MenuEstablecimientoActivity"
             android:exported="false" />
         <activity

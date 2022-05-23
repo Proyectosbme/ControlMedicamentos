@@ -2,103 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/teal_700"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Enfermedades.EnfermedadesAgregarActivity">
+    tools:context=".Dosis.DosisAgregarActivity">
+
 
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Enfermedad"
-        android:drawableLeft="@drawable/addenfermedad"
-        android:textColor="@color/white"
+        android:drawableLeft="@drawable/enfermedadd"
+        android:text="Agregar dosis"
         android:textSize="35dp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_margin="10dp"
+
+
         android:gravity="center"/>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="271dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/black"
-            android:drawableLeft="@drawable/doctor"
-            android:text="Medico"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-        <Spinner
-            android:id="@+id/comboUsuarioEnfermedad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:text="Eliminar"
-            android:textSize="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/black"
-            android:drawableLeft="@drawable/user"
-            android:text="Usuario"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/EdiUsuarioenferm"
-            android:background="#30ffffff"
-            android:hint="Usuario"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"
-            android:drawablePadding="20dp"/>
-    </LinearLayout>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ediNombreEnfermedad"
-        android:background="#30ffffff"
-        android:hint="Ingrese nombre de la enfermedad"
-        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/black"
+        android:drawableLeft="@drawable/enfermedad"
+        android:text="Seleccione medicamento"
         android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:drawableLeft="@drawable/coronavirus"
+        android:textSize="20dp" />
 
-        android:drawablePadding="20dp"/>
 
+    <Spinner
+        android:id="@+id/comboagregarDosis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:outlineAmbientShadowColor="@color/white"
+        android:scrollbarSize="30dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="71dp"
@@ -111,14 +60,13 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:drawableLeft="@drawable/calendar"
-
             android:layout_weight="1"
             android:backgroundTint="#793EC3"
-            android:onClick="fecha_infermedad"
-            android:text="Fecha" />
+            android:onClick="fecha_inicio"
+            android:text="Fecha inicio" />
 
         <TextView
-            android:id="@+id/ediFechaEnfermedad"
+            android:id="@+id/txtFechaInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -136,7 +84,42 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:orientation="horizontal">
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/calendar"
+            android:layout_weight="1"
+            android:backgroundTint="#793EC3"
+            android:onClick="fecha_fin"
+            android:text="Fecha final" />
+
+        <TextView
+            android:id="@+id/edifechaFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#30ffffff"
+            android:drawablePadding="20dp"
+            android:hint="DD/MM/AA"
+            android:paddingHorizontal="30dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,10 +143,45 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ediTipoEnfermedad"
+            android:id="@+id/ediTipoDosis"
             android:layout_weight="1"
             android:background="#30ffffff"
-            android:hint="ingrese el tipo"
+            android:hint="Hora/dia/semana"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:drawablePadding="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="cada "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edirepertir"
+            android:layout_weight="1"
+            android:background="#30ffffff"
+            android:hint="1 ves a la semana ejemplo"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_margin="10dp"
@@ -175,13 +193,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
+        android:drawableLeft="@drawable/delete"
         android:layout_height="wrap_content"
         android:id="@+id/btnURegistrar"
-        android:drawableLeft="@drawable/insert"
         android:text="Agregar"
         android:layout_gravity="center"
         android:backgroundTint="@color/purple_200"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:onClick="Agregar_enfermedad" />
+        android:onClick="agregarDOSIS" />
+
 </LinearLayout>

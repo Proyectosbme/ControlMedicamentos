@@ -6,15 +6,14 @@
     android:orientation="vertical"
     android:background="@color/teal_700"
     android:layout_height="match_parent"
-    tools:context=".Establecimiento.MenuEstablecimientoActivity">
+    tools:context=".Dosis.MenuDosisActivity">
 
-
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/menu"
+        android:drawableLeft="@drawable/doctormenu"
         android:id="@+id/signin"
-        android:text="Menu Establecimiento"
+        android:text="Menu Dosis"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -40,11 +39,10 @@
                 android:backgroundTint="@color/purple_200"
                 android:layout_centerHorizontal="true"
                 android:drawableLeft="@drawable/add"
-
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:onClick="Agregar_Establecimeinto"/>
+                android:onClick="oncAgregarDosis"/>
             <Button
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -58,7 +56,7 @@
                 android:layout_marginLeft="5dp"
                 android:drawableLeft="@drawable/list"
                 android:layout_marginRight="5dp"
-                android:onClick="Consultar_medicamento"/>
+                android:onClick="oncConsultarDosis"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -81,7 +79,8 @@
             android:textSize="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:onClick="Eliminar_establecimiento"/>
+            android:onClick="Eliminar_Dosis"/>
     </LinearLayout>
+
 
 </LinearLayout>

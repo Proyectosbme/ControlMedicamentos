@@ -9,6 +9,8 @@
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_actualizar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_agregar.xml" value="0.25" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_contacto_consultar.xml" value="0.22" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_dosis_agregar.xml" value="0.15604959384352288" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_dosis_consultar.xml" value="0.15604959384352288" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_enfermedades_agregar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_enfermedades_consultar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_enfermedades_editar.xml" value="0.20416666666666666" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_eliminar.xml" value="0.22" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_medico_insertar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_contacto.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_dosis.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_enfermedades.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_establecimiento.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/bme/AndroidStudioProjects/ProyectoPDM/app/src/main/res/layout/activity_menu_medicamento.xml" value="0.1675929884566054" />

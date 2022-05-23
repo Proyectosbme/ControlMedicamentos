@@ -9,7 +9,7 @@
     tools:context=".Usuarios.UsuarioEliminarActivity">
 
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Eliminar de usuarios"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#30ffffff"
-        android:hint="Ingrese el nombre de usuario:"
+        android:hint="Ingrese el id del usuario:"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:layout_margin="10dp"
