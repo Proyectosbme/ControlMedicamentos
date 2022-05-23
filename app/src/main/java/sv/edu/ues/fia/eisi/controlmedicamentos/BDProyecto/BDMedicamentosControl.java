@@ -32,7 +32,7 @@ public class BDMedicamentosControl {
         public BDMedicamentosControl(Context ctx) {this.context = ctx; DBHelper = new DatabaseHelper(context); }
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
-            private static final String BASE_DATOS = "ControlMedicamentos.s3db";
+            private static final String BASE_DATOS = "ControlMedicamentoss.s3db";
             private static final int VERSION = 1;
             public DatabaseHelper(Context context) {
                 super(context, BASE_DATOS, null, VERSION);
@@ -467,7 +467,7 @@ public class BDMedicamentosControl {
         conn.put("idMedicamento", dosis.getIdMedicamento());
         conn.put("tipo", dosis.getUnidad());
         conn.put("cada", dosis.getSecuencia());
-        conn.put("fechaIncio", dosis.getFechaInicio());
+        conn.put("fechaInicio", dosis.getFechaInicio());
         conn.put("fechaFin", dosis.getFechaFin());
 
         contador=db.insert("dosis", null, conn);
